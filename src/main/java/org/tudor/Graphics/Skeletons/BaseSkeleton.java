@@ -1,4 +1,6 @@
-package org.tudor.Animations;
+package org.tudor.Graphics.Skeletons;
+
+import org.tudor.Graphics.Primitives.CorePoint;
 
 import java.awt.*;
 
@@ -11,8 +13,8 @@ public class BaseSkeleton {
     }
 
     public void setPosition(int x, int y) {
+        cpTreeRoot.move(x-absolutePos.x, y-absolutePos.y);
         absolutePos.setLocation(x, y);
-        cpTreeRoot.move(absolutePos.x-x, absolutePos.y-y);
     }
 
     public void translatePosition(int deltaX, int deltaY) {
