@@ -1,6 +1,7 @@
 package org.tudor;
 
 import  org.tudor.GameWindow.GameWindow;
+import org.tudor.Graphics.GameRenderer;
 import org.tudor.Graphics.Skeletons.HumanSkeleton;
 
 import java.awt.*;
@@ -11,8 +12,8 @@ public class Game implements Runnable {
     private boolean         runState;
     private Thread          gameThread;
     private BufferStrategy  bs;
-
-    long oldTime;
+    private GameRenderer    rendererInstance = null;
+    private long                    oldTime;
 
     private HumanSkeleton testPlayer = null;
 
@@ -35,6 +36,9 @@ public class Game implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // Create the render instance singleton
+        rendererInstance = GameRenderer.shared();
 
         testPlayer = new HumanSkeleton(new Point(200, 200));
     }
@@ -104,8 +108,7 @@ public class Game implements Runnable {
         Graphics2D g2d = (Graphics2D) bs.getDrawGraphics();
         g2d.clearRect(0, 0, wnd.getWndWidth(), wnd.getWndHeight());
 
-        // Stub drawing
-        testPlayer.draw(g2d);
+        rendererInstance.drawQueue(g2d);
 
         bs.show();
         g2d.dispose();

@@ -3,13 +3,13 @@ package org.tudor.Graphics.Skeletons;
 import org.tudor.Graphics.Assets.ImageLoader;
 import org.tudor.Graphics.Primitives.CorePoint;
 import org.tudor.Graphics.Primitives.CoreRectangle;
-import org.tudor.Graphics.Primitives.Drawable;
+import org.tudor.Graphics.GameRenderer;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
-public class HumanSkeleton extends BaseSkeleton implements Drawable {
+public class HumanSkeleton extends BaseSkeleton {
     public HashMap<String, CoreRectangle> bodyParts = new HashMap<>();
 
     public HumanSkeleton(Point initialPosition) {
@@ -62,12 +62,12 @@ public class HumanSkeleton extends BaseSkeleton implements Drawable {
 
         super.setCpTreeRoot(neck);
         super.setPosition(initialPosition.x, initialPosition.y);
-    }
 
-    @Override
-    public void draw(Graphics2D g) {
-        bodyParts.forEach((k, v) -> {
-            v.draw(g);
+        // Add body parts to render queue
+        GameRenderer r = GameRenderer.shared();
+        bodyParts.forEach( (k, v) -> {
+            v.setZIndex(1);
+            r.addToQueue(v);
         });
     }
 }

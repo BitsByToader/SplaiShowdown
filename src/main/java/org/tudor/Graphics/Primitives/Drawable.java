@@ -3,5 +3,7 @@ package org.tudor.Graphics.Primitives;
 import java.awt.*;
 
 public interface Drawable {
-    public void draw(Graphics2D g);
+    void draw(Graphics2D g);
+    Integer getZIndex();
+    void setZIndex(Integer idx);
 }

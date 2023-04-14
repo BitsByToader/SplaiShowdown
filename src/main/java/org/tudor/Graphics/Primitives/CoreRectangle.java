@@ -5,6 +5,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public class CoreRectangle implements Drawable {
+    private Integer zIndex = 1;
+
     private CorePoint parent = null;
     private CorePoint child = null;
 
@@ -36,5 +38,14 @@ public class CoreRectangle implements Drawable {
 //        g.fillRect(parentAbsPos.x, parentAbsPos.y, 1, 1);
 //        Point childAbsPos = child.getAbsolutePos();
 //        g.fillRect(childAbsPos.x, childAbsPos.y, 1, 1);
+    }
+
+    public void setZIndex(Integer idx) {
+        zIndex = idx;
+    }
+
+    public Integer getZIndex() {
+        // TODO: Stub implementation
+        return zIndex;
     }
 }
