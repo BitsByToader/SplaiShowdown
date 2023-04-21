@@ -2,6 +2,9 @@ package org.tudor.Timer;
 
 import java.util.function.Consumer;
 
+//TODO: Maybe createa a Timeable interface so we can encapsulate the duration and repatedness of
+// the timer within the target member?
+
 /**
  * Basic Timer class that is different from the Java Timer class, since it does everything
  * synchronously.
@@ -51,13 +54,19 @@ public class SyncTimer<T> {
     }
 
     /**
+     * Returns the target that the timer is consuming every frame.
+     * @return Target object of timer.
+     */
+    public T target() { return targetObject; }
+
+    /**
      * Updates the timer with how much time passed from the previous frame.
      * Will call the update callback until the duration elapsed and finish callback last.
-     * @param elapsedTime Time elapsed from the previous frame to the current frame.
+     * @param elapsedTimeMs Time elapsed from the previous frame to the current frame.
      */
-    public void update(long elapsedTime) {
+    public void update(long elapsedTimeMs) {
         if ( running ) {
-            remaining -= elapsedTime;
+            remaining -= elapsedTimeMs;
 
             if ( updateCallback != null )
                 updateCallback.accept(targetObject);

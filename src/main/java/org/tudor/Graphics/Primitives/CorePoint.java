@@ -1,9 +1,11 @@
 package org.tudor.Graphics.Primitives;
 
+import org.tudor.Graphics.Animations.Animatable;
+
 import java.awt.*;
 import java.util.ArrayList;
 
-public class CorePoint {
+public class CorePoint implements Animatable<Point> {
     private CorePoint parent = null;
     private ArrayList<CorePoint> children = new ArrayList<>();
 
@@ -58,6 +60,14 @@ public class CorePoint {
     public void move(int deltaX, int deltaY) {
         relativePos.translate(deltaX, deltaY);
 
+        System.out.println("RELATIVE POSITION: " + relativePos);
+
         // TODO: Change the parent's position as well for a chain-like movement (kinda hard)
+    }
+
+
+    @Override
+    public void animate(Point newState) {
+        move(newState.x, newState.y);
     }
 }

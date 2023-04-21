@@ -1,11 +1,17 @@
 package org.tudor;
 
 import  org.tudor.GameWindow.GameWindow;
+import org.tudor.Graphics.Animations.AnimationHandler;
+import org.tudor.Graphics.Animations.AnimationManager;
+import org.tudor.Graphics.Assets.Assets;
 import org.tudor.Graphics.GameRenderer;
 import org.tudor.Graphics.Skeletons.HumanSkeleton;
+import org.tudor.Timer.TimerManager;
 
+import javax.sound.midi.Soundbank;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.util.UUID;
 
 public class Game implements Runnable {
     private GameWindow      wnd;
@@ -13,7 +19,7 @@ public class Game implements Runnable {
     private Thread          gameThread;
     private BufferStrategy  bs;
     private GameRenderer    rendererInstance = null;
-    private long                    oldTime;
+    private long            oldTime;
 
     private HumanSkeleton testPlayer = null;
 
@@ -37,10 +43,49 @@ public class Game implements Runnable {
             e.printStackTrace();
         }
 
+        Assets.init();
+
         // Create the render instance singleton
         rendererInstance = GameRenderer.shared();
 
         testPlayer = new HumanSkeleton(new Point(200, 200));
+        testPlayer.beginRendering();
+
+        UUID u = AnimationManager.shared().registerForAnimations();
+        UUID uu = AnimationManager.shared().registerForAnimations();
+
+        AnimationHandler<Point> a = new AnimationHandler<>(
+                Point.class,
+                testPlayer.getJoint("fistRight"),
+                new Point(15, -25),
+                1000
+        );
+
+        AnimationHandler<Point> a1 = new AnimationHandler<>(
+                Point.class,
+                testPlayer.getJoint("fistRight"),
+                new Point(-25, 5),
+                1000
+        );
+
+        AnimationHandler<Point> a2 = new AnimationHandler<>(
+                Point.class,
+                testPlayer.getJoint("fistRight"),
+                new Point(25, 0),
+                1000
+        );
+
+        AnimationHandler<Point> aa = new AnimationHandler<>(
+                Point.class,
+                testPlayer.getJoint("elbowRight"),
+                new Point(15, -15),
+                1000
+        );
+
+        AnimationManager.shared().addAnimation(u, a);
+        AnimationManager.shared().addAnimation(u, a1);
+        AnimationManager.shared().addAnimation(u, a2 );
+        AnimationManager.shared().addAnimation(uu, aa);
     }
 
     /**
@@ -97,6 +142,10 @@ public class Game implements Runnable {
      */
     private void Update() {
         // TODO: Stub here
+        long elapsed = ( System.nanoTime() - oldTime ) / 1000000;
+
+        AnimationManager.shared().update(elapsed);
+        TimerManager.shared().update(elapsed);
     }
 
     /**

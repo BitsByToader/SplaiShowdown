@@ -1,5 +1,6 @@
 package org.tudor.Graphics.Skeletons;
 
+import org.tudor.Graphics.Assets.Assets;
 import org.tudor.Graphics.Assets.ImageLoader;
 import org.tudor.Graphics.Primitives.CorePoint;
 import org.tudor.Graphics.Primitives.CoreRectangle;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 
 public class HumanSkeleton extends BaseSkeleton {
     public HashMap<String, CoreRectangle> bodyParts = new HashMap<>();
+    public HashMap<String, CorePoint> joints = new HashMap<>();
 
     public HumanSkeleton(Point initialPosition) {
         // Create the CP tree aka skeleton
@@ -46,11 +48,18 @@ public class HumanSkeleton extends BaseSkeleton {
         neck.addChild(shoulderLeft);
         neck.addChild(shoulderRight);
 
-        // Create the body parts
-        BufferedImage partImg = ImageLoader.loadImage("/part.png");
-        BufferedImage partSmallImg = ImageLoader.loadImage("/part_small.png");
+        // Save important joints separately
+        joints.put("fistLeft", fistLeft);
+        joints.put("fistRight", fistRight);
+        joints.put("footLeft", footLeft);
+        joints.put("footRight", footRight);
+        joints.put("elbowRight", elbowRight);
 
-        bodyParts.put("torso", new CoreRectangle(partImg, neck, hips));
+        // Create the body parts
+        BufferedImage partLarge = Assets.partLarge;
+        BufferedImage partSmallImg = Assets.partSmall;
+
+        bodyParts.put("torso", new CoreRectangle(partLarge, neck, hips));
         bodyParts.put("armLeft", new CoreRectangle(partSmallImg, shoulderLeft, elbowLeft));
         bodyParts.put("armRight", new CoreRectangle(partSmallImg, shoulderRight, elbowRight));
         bodyParts.put("foreArmLeft", new CoreRectangle(partSmallImg, elbowLeft, fistLeft));
@@ -62,12 +71,21 @@ public class HumanSkeleton extends BaseSkeleton {
 
         super.setCpTreeRoot(neck);
         super.setPosition(initialPosition.x, initialPosition.y);
+    }
 
-        // Add body parts to render queue
+    public void beginRendering() {
         GameRenderer r = GameRenderer.shared();
         bodyParts.forEach( (k, v) -> {
             v.setZIndex(1);
             r.addToQueue(v);
         });
     }
+
+    public CoreRectangle getBodyPart(String name) {
+        return bodyParts.get(name);
+    };
+
+    public CorePoint getJoint(String name) {
+        return joints.get(name);
+    };
 }

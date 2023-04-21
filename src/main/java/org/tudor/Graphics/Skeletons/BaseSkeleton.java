@@ -1,10 +1,11 @@
 package org.tudor.Graphics.Skeletons;
 
 import org.tudor.Graphics.Primitives.CorePoint;
+import org.tudor.Graphics.Primitives.CoreRectangle;
 
 import java.awt.*;
 
-public class BaseSkeleton {
+abstract public class BaseSkeleton {
     private CorePoint cpTreeRoot = null;
     private Point absolutePos = new Point(0, 0);
 
@@ -21,4 +22,8 @@ public class BaseSkeleton {
         absolutePos.translate(deltaX, deltaY);
         cpTreeRoot.move(deltaX, deltaY);
     }
+
+    public abstract CoreRectangle getBodyPart(String name);
+
+    public abstract CorePoint getJoint(String name);
 }
