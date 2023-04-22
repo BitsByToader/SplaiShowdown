@@ -13,14 +13,24 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.UUID;
 
+/**
+ * Main game engine class.
+ */
 public class Game implements Runnable {
+    /** Game window. */
     private GameWindow      wnd;
+    /** Indicates if the game is running. */
     private boolean         runState;
+    /** The main render/engine thread. */
     private Thread          gameThread;
+    /** The buffer strategy used when rendering. */
     private BufferStrategy  bs;
+    /** The shared instance when rendering. */
     private GameRenderer    rendererInstance = null;
+    /** The previous time for the old time. */
     private long            oldTime;
 
+    /** A test human skeleton for testing. */
     private HumanSkeleton testPlayer = null;
 
     /** Creates the game window for the game.

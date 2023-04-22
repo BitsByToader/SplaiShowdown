@@ -7,10 +7,15 @@ import java.awt.*;
  * Implements the main window of the Game.
  */
 public class GameWindow {
+    /** The frame that is being rendered into. */
     private JFrame wndFrame;
+    /** Title of game window. */
     private String wndTitle;
+    /** Width of game window. */
     private int wndWidth;
+    /** Height of game window. */
     private int wndHeight;
+    /** Canvas used for rendering. */
     private Canvas canvas;
 
     /**

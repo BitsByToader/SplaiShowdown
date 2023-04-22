@@ -5,21 +5,35 @@ import java.util.function.Consumer;
 //TODO: Maybe createa a Timeable interface so we can encapsulate the duration and repatedness of
 // the timer within the target member?
 
+//TODO: Add a finished member to the timer. Remove the timer from the manager based on that member
+// and not the running member so we can keep track of paused timers as well. Or when adding/starting a
+// timer also start/add it.
+
 /**
  * Basic Timer class that is different from the Java Timer class, since it does everything
  * synchronously.
  * The updates will be called every frame and the timer will finish with the first change it gets.
  * This avoids concurrency issues, at the cost of less flexibility.
+ * The SyncTimer class heavily relies on the Producer-Consumer design pattern, requiring that the timeable
+ * object produces the data, and the timer consumes it every frame until it expires.
+ * @param <T> The object type that is being consumed every frame.
  */
 public class SyncTimer<T> {
+    /** Indicates if the timer is running. */
     public boolean running = false;
+    /** The duration of the timer. */
     private long duration;
+    /** How much is left from the timer. */
     private long remaining;
+    /** Indicates if the timer is repeating. */
     private boolean repeating;
 
-    Consumer<T> finishCallback;
-    Consumer<T> updateCallback;
-    T targetObject;
+    /** Callback that gets called when the timer finishes. */
+    private Consumer<T> finishCallback;
+    /** Callback that gets called every frame. */
+    private Consumer<T> updateCallback;
+    /** The target object that is being consumed in the callbacks. */
+    private T targetObject;
 
     /**
      * Initializes the timer with a duration, whether it repeats, update and finish callbacks and
@@ -52,6 +66,11 @@ public class SyncTimer<T> {
     public void stop() {
         running = false;
     }
+
+    /**
+     * Resumes the timer after it has been stopped.
+     */
+    public void resume() { running = true; }
 
     /**
      * Returns the target that the timer is consuming every frame.

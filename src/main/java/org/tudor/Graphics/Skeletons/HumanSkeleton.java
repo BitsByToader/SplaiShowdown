@@ -10,10 +10,20 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
+/**
+ * Implementation of <i>BaseSkeleton</i> for a Human skeleton, using <i>HashMaps</i> for storing the
+ * body parts and the joints.
+ */
 public class HumanSkeleton extends BaseSkeleton {
+    /** Maps body parts to their names. */
     public HashMap<String, CoreRectangle> bodyParts = new HashMap<>();
+    /** Maps the joints to their names. */
     public HashMap<String, CorePoint> joints = new HashMap<>();
 
+    /**
+     * Constructor that builds the skeleton in memory.
+     * @param initialPosition The initial, absolute, position of the skeleton.
+     */
     public HumanSkeleton(Point initialPosition) {
         // Create the CP tree aka skeleton
         CorePoint elbowLeft = new CorePoint(new Point(-5, 10));
@@ -73,6 +83,9 @@ public class HumanSkeleton extends BaseSkeleton {
         super.setPosition(initialPosition.x, initialPosition.y);
     }
 
+    /**
+     * Notifies the <i>GameRenderer</i> that this skeleton will need to be rendered.
+     */
     public void beginRendering() {
         GameRenderer r = GameRenderer.shared();
         bodyParts.forEach( (k, v) -> {
