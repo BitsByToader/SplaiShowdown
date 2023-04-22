@@ -79,8 +79,14 @@ public class GameWindow {
      * Game canvas getter.
      * @return Canvas of the game.
      */
-    public Canvas GetCanvas() {
+    public Canvas getCanvas() {
         return canvas;
     }
+
+    /**
+     * Getter for the window frame.
+     * @return Window frame.
+     */
+    public JFrame getFrame() { return wndFrame; }
 }
 

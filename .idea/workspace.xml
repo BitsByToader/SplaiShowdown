@@ -8,23 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f119ca68-6ddc-46ec-a71e-e24ff5370176" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Input/KeyManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/GameWindow/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameWindow/GameWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/Animatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/Animatable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Assets/Assets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Assets/Assets.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Assets/ImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Assets/ImageLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/GameRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/GameRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CorePoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CorePoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CoreRectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CoreRectangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/Drawable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/Drawable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/BaseSkeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/BaseSkeleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/HumanSkeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/HumanSkeleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Timer/SyncTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Timer/SyncTimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Timer/TimerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Timer/TimerManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,6 +128,7 @@
       <workItem from="1681975259949" duration="22226000" />
       <workItem from="1682072246507" duration="12911000" />
       <workItem from="1682142548299" duration="12323000" />
+      <workItem from="1682167621267" duration="3396000" />
     </task>
     <servers />
   </component>

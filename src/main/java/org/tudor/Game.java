@@ -6,9 +6,9 @@ import org.tudor.Graphics.Animations.AnimationManager;
 import org.tudor.Graphics.Assets.Assets;
 import org.tudor.Graphics.GameRenderer;
 import org.tudor.Graphics.Skeletons.HumanSkeleton;
+import org.tudor.Input.KeyManager;
 import org.tudor.Timer.TimerManager;
 
-import javax.sound.midi.Soundbank;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.UUID;
@@ -21,13 +21,15 @@ public class Game implements Runnable {
     private GameWindow      wnd;
     /** Indicates if the game is running. */
     private boolean         runState;
-    /** The main render/engine thread. */
+    /** Main render/engine thread. */
     private Thread          gameThread;
-    /** The buffer strategy used when rendering. */
+    /** Buffer strategy used when rendering. */
     private BufferStrategy  bs;
-    /** The shared instance when rendering. */
+    /** Shared instance used for rendering. */
     private GameRenderer    rendererInstance = null;
-    /** The previous time for the old time. */
+    /**  Shared instance used for key handling. */
+    private KeyManager      keyManager = null;
+    /** Previous time for the old time. */
     private long            oldTime;
 
     /** A test human skeleton for testing. */
@@ -48,12 +50,17 @@ public class Game implements Runnable {
 
         // Create buffer strategy
         try {
-            wnd.GetCanvas().createBufferStrategy(3);
+            wnd.getCanvas().createBufferStrategy(3);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        // Load the assets
         Assets.init();
+
+        // Create the key manager and register it
+        keyManager = KeyManager.shared();
+        wnd.getFrame().addKeyListener(keyManager);
 
         // Create the render instance singleton
         rendererInstance = GameRenderer.shared();
@@ -151,10 +158,12 @@ public class Game implements Runnable {
      * Handles all the game logic, thus updating the game state and all elements.
      */
     private void Update() {
-        // TODO: Stub here
         long elapsed = ( System.nanoTime() - oldTime ) / 1000000;
 
+        keyManager.update();
+
         AnimationManager.shared().update(elapsed);
+
         TimerManager.shared().update(elapsed);
     }
 
@@ -162,7 +171,7 @@ public class Game implements Runnable {
      * Draws the elements to the screen according to the game state built in the Update() method.
      */
     private void Draw() {
-        bs = wnd.GetCanvas().getBufferStrategy();
+        bs = wnd.getCanvas().getBufferStrategy();
 
         Graphics2D g2d = (Graphics2D) bs.getDrawGraphics();
         g2d.clearRect(0, 0, wnd.getWndWidth(), wnd.getWndHeight());
