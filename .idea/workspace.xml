@@ -8,10 +8,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f119ca68-6ddc-46ec-a71e-e24ff5370176" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Input/KeyManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/head.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/GameWindow/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameWindow/GameWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Assets/Assets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Assets/Assets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/HumanSkeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/HumanSkeleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Input/KeyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Input/KeyManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +130,7 @@
       <workItem from="1681975259949" duration="22226000" />
       <workItem from="1682072246507" duration="12911000" />
       <workItem from="1682142548299" duration="12323000" />
-      <workItem from="1682167621267" duration="3396000" />
+      <workItem from="1682167621267" duration="8773000" />
     </task>
     <servers />
   </component>

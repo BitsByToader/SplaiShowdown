@@ -10,6 +10,8 @@ public class Assets {
     public static BufferedImage partSmall;
     /** Test texture for a large body part. */
     public static BufferedImage partLarge;
+    /** Test texture for a head, i.e. a filled in circle. */
+    public static BufferedImage head;
 
     /**
      * Private constructor since this is a static class.
@@ -22,5 +24,6 @@ public class Assets {
     public static void init() {
         partSmall = ImageLoader.loadImage("/part_small.png");
         partLarge = ImageLoader.loadImage("/part.png");
+        head = ImageLoader.loadImage("/head.png");
     }
 }

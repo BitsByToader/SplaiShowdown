@@ -52,11 +52,13 @@ public class HumanSkeleton extends BaseSkeleton {
 
         CorePoint neck = new CorePoint(new Point(0,0));
         CorePoint hips = new CorePoint(new Point(0,40));
+        CorePoint head = new CorePoint(new Point(0, -15));
         hips.addChild(hipLeft);
         hips.addChild(hipRight);
         neck.addChild(hips);
         neck.addChild(shoulderLeft);
         neck.addChild(shoulderRight);
+        neck.addChild(head);
 
         // Save important joints separately
         joints.put("fistLeft", fistLeft);
@@ -78,6 +80,7 @@ public class HumanSkeleton extends BaseSkeleton {
         bodyParts.put("thighRight", new CoreRectangle(partSmallImg, hipRight, kneeRight));
         bodyParts.put("legLeft", new CoreRectangle(partSmallImg, kneeLeft, footLeft));
         bodyParts.put("legRight", new CoreRectangle(partSmallImg, kneeRight, footRight));
+        bodyParts.put("head", new CoreRectangle(Assets.head, neck, head));
 
         super.setCpTreeRoot(neck);
         super.setPosition(initialPosition.x, initialPosition.y);

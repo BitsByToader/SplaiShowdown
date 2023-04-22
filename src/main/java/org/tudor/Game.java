@@ -32,8 +32,15 @@ public class Game implements Runnable {
     /** Previous time for the old time. */
     private long            oldTime;
 
-    /** A test human skeleton for testing. */
+    // Driver code animation system demo
     private HumanSkeleton testPlayer = null;
+    private UUID u;
+    private UUID uu;
+    private AnimationHandler<Point> a;
+    private AnimationHandler<Point> a1;
+    private AnimationHandler<Point> a2;
+    private AnimationHandler<Point> aa;
+    private boolean performedHello = false;
 
     /** Creates the game window for the game.
      * @param title Window title
@@ -65,44 +72,40 @@ public class Game implements Runnable {
         // Create the render instance singleton
         rendererInstance = GameRenderer.shared();
 
-        testPlayer = new HumanSkeleton(new Point(200, 200));
+        // Driver code to game demo
+        testPlayer = new HumanSkeleton(new Point(300, 400));
         testPlayer.beginRendering();
 
-        UUID u = AnimationManager.shared().registerForAnimations();
-        UUID uu = AnimationManager.shared().registerForAnimations();
+        u = AnimationManager.shared().registerForAnimations();
+        uu = AnimationManager.shared().registerForAnimations();
 
-        AnimationHandler<Point> a = new AnimationHandler<>(
+        a = new AnimationHandler<>(
                 Point.class,
                 testPlayer.getJoint("fistRight"),
                 new Point(15, -25),
                 1000
         );
 
-        AnimationHandler<Point> a1 = new AnimationHandler<>(
+        a1 = new AnimationHandler<>(
                 Point.class,
                 testPlayer.getJoint("fistRight"),
                 new Point(-25, 5),
                 1000
         );
 
-        AnimationHandler<Point> a2 = new AnimationHandler<>(
+        a2 = new AnimationHandler<>(
                 Point.class,
                 testPlayer.getJoint("fistRight"),
                 new Point(25, 0),
                 1000
         );
 
-        AnimationHandler<Point> aa = new AnimationHandler<>(
+        aa = new AnimationHandler<>(
                 Point.class,
                 testPlayer.getJoint("elbowRight"),
                 new Point(15, -15),
                 1000
         );
-
-        AnimationManager.shared().addAnimation(u, a);
-        AnimationManager.shared().addAnimation(u, a1);
-        AnimationManager.shared().addAnimation(u, a2 );
-        AnimationManager.shared().addAnimation(uu, aa);
     }
 
     /**
@@ -161,6 +164,21 @@ public class Game implements Runnable {
         long elapsed = ( System.nanoTime() - oldTime ) / 1000000;
 
         keyManager.update();
+
+        // Driver code for game demo.
+        if ( keyManager.right ) {
+            testPlayer.translatePosition(2, 0);
+        }
+        if ( keyManager.left ) {
+            testPlayer.translatePosition(-2, 0);
+        }
+        if ( keyManager.space && !performedHello ) {
+            AnimationManager.shared().addAnimation(u, a);
+            AnimationManager.shared().addAnimation(u, a1);
+            AnimationManager.shared().addAnimation(u, a2 );
+            AnimationManager.shared().addAnimation(uu, aa);
+            performedHello = true;
+        }
 
         AnimationManager.shared().update(elapsed);
 
