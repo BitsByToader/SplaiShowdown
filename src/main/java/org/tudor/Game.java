@@ -18,18 +18,20 @@ import java.util.UUID;
  */
 public class Game implements Runnable {
     /** Game window. */
-    private GameWindow      wnd;
+    private GameWindow          wnd;
     /** Indicates if the game is running. */
-    private boolean         runState;
+    private boolean             runState;
     /** Main render/engine thread. */
-    private Thread          gameThread;
+    private Thread              gameThread;
     /** Buffer strategy used when rendering. */
-    private BufferStrategy  bs;
+    private BufferStrategy      bs;
     /** Shared instance used for rendering. */
-    private GameRenderer    rendererInstance = null;
+    private GameRenderer        rendererInstance;
     /**  Shared instance used for key handling. */
-    private KeyManager      keyManager = null;
-    /** Previous time for the old time. */
+    private KeyManager          keyManager;
+    private AnimationManager    animationManager;
+    private TimerManager        timerManager;
+    /** Previous time for the old frame. */
     private long            oldTime;
 
     // Driver code animation system demo
@@ -64,6 +66,12 @@ public class Game implements Runnable {
 
         // Load the assets
         Assets.init();
+
+        // Create the animation manager
+        animationManager = AnimationManager.shared();
+
+        // Create the timer manager
+        timerManager = TimerManager.shared();
 
         // Create the key manager and register it
         keyManager = KeyManager.shared();
@@ -175,14 +183,14 @@ public class Game implements Runnable {
         if ( keyManager.space && !performedHello ) {
             AnimationManager.shared().addAnimation(u, a);
             AnimationManager.shared().addAnimation(u, a1);
-            AnimationManager.shared().addAnimation(u, a2 );
+            AnimationManager.shared().addAnimation(u, a2);
             AnimationManager.shared().addAnimation(uu, aa);
             performedHello = true;
         }
 
-        AnimationManager.shared().update(elapsed);
+        animationManager.update(elapsed);
 
-        TimerManager.shared().update(elapsed);
+        timerManager.update(elapsed);
     }
 
     /**

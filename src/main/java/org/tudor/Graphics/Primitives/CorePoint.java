@@ -1,9 +1,13 @@
 package org.tudor.Graphics.Primitives;
 
+import org.jetbrains.annotations.NotNull;
 import org.tudor.Graphics.Animations.Animatable;
+import org.tudor.Graphics.Animations.AnimationHandler;
+import org.tudor.Graphics.Animations.AnimationManager;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * The CorePoint class is the absolute base for the Skeleton and Animation systems. It defines the
@@ -27,15 +31,15 @@ public class CorePoint implements Animatable<Point> {
     private ArrayList<CorePoint> children = new ArrayList<>();
 
     /**
-     * Initialises this CorePoint with a position. If it's the root of the tree, this is the absolute
-     * position in the world. Otherwise, it's the relative position to its parent.
-     * @param initialPosition The initial position of the CorePoint.
+     * The identifier used when interacting with the Animation Manager. While identifiers can
+     * be kept separately if the user wants more control, a CorePoint can also keep track of its
+     * own identifier when it is registered for animations.
+     * This can prove useful when setting up animations directly through the CorePoint.
      */
-    public CorePoint(Point initialPosition) {
-        relativePos = initialPosition;
-    }
+    private UUID animationIdentifier = null;
 
-    /** A CorePoint's position will always be relative to its parent. However, the root of the CorePoint
+    /**
+     * A CorePoint's position will always be relative to its parent. However, the root of the CorePoint
      * tree has the <i>relativePos</i> field actually be the absolute position in the world.
      * We do this because we don't need to impose any world positioning to the CorePoint tree,
      * since animations will always be referenced from a default state, thus working with relative positions.
@@ -44,6 +48,15 @@ public class CorePoint implements Animatable<Point> {
      * easily, e.g. when drawing textures.
      */
     private Point relativePos;
+
+    /**
+     * The relative position of a CorePoint when it is in its base state. The base point of a
+     * CorePoint refers to its position when the whole CorePoint tree is in its base state,
+     * animation-wise. This is really helpful for interrupting animations, since we can always
+     * reference animations from the base state, and then calculate delta positions from one
+     * state of an animation to another easily.
+     */
+    private Point basePos;
 
     /**
      * A fixedToParent CorePoint will not allow its children to modify its location during a
@@ -57,6 +70,18 @@ public class CorePoint implements Animatable<Point> {
      * animation, and we don't want to permanently break the CorePoint tree.
      */
     public boolean detached = false;
+
+    /**
+     * Initialises this CorePoint with a position. This position is two-fold, as it is the
+     * relative position the CorePoint takes in the tree, and also the base state of the CorePoint.
+     * If it's the root of the tree, this is the absolute position in the world. Otherwise,
+     * it's the relative position to its parent.
+     * @param initialPosition The initial and base position of the CorePoint.
+     */
+    public CorePoint(Point initialPosition) {
+        relativePos = initialPosition;
+        basePos = initialPosition;
+    }
 
     /**
      * Adds a child to this CorePoint.
@@ -106,6 +131,33 @@ public class CorePoint implements Animatable<Point> {
         // TODO: Change the parent's position as well for a chain-like movement (kinda hard)
     }
 
+    /**
+     * Utility method for registering a CorePoint for animations and making the CorePoint responsible
+     * for its UUID.
+     */
+    public void registerForAnimations() {
+        animationIdentifier = AnimationManager.shared().registerForAnimations();
+    }
+
+    /**
+     * Getter for the animations UUID.
+     * @return The UUID tied to this Animatable.
+     */
+    public UUID getAnimationIdentifier() {
+        return animationIdentifier;
+    }
+
+    /**
+     * Calculates the delta between the current position and the target position.
+     * @param t Target position, as a delta between this position and the base position.
+     * @return Delta between target and current position.
+     */
+    public Point getDeltaUsingBase(@NotNull Point t) {
+        return new Point(
+                t.x + basePos.x - relativePos.x,
+                t.y + basePos.y - relativePos.y
+        );
+    }
 
     @Override
     public void animate(Point newState) {
