@@ -1,5 +1,6 @@
 package org.tudor.Graphics.Animations;
 
+import org.tudor.Graphics.Primitives.CorePoint;
 import org.tudor.Timer.SyncTimer;
 import org.tudor.Timer.TimerManager;
 
@@ -40,7 +41,16 @@ public class AnimationManager {
     private Consumer<AnimationHandler<?>> animationFinish = new Consumer<AnimationHandler<?>>() {
         @Override
         public void accept(AnimationHandler<?> animationHandler) {
-//            System.out.println("ANIMATION FINISH: " + animationHandler);
+            System.out.println("ANIMATION FINISH: " + ((CorePoint)animationHandler.animation.entity).getRelativePos());
+            animationHandler.reset();
+
+            AnimationHandler<?> next = animationHandler.getNextHandler();
+            if ( next != null ) {
+                AnimationManager.shared().addAnimation(
+                        animationHandler.animation().entity.getAnimationIdentifier(),
+                        next
+                );
+            }
         }
     };
 

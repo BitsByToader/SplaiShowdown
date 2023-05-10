@@ -8,11 +8,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f119ca68-6ddc-46ec-a71e-e24ff5370176" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Entities/Entity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Entities/PlayerEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/PointAnimationHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/SubAnimation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/Animatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/Animatable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CorePoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CorePoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/BaseSkeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/BaseSkeleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/HumanSkeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/HumanSkeleton.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +143,19 @@
       <workItem from="1682431391366" duration="492000" />
       <workItem from="1682443707951" duration="5801000" />
       <workItem from="1682658223751" duration="3000000" />
-      <workItem from="1682856530089" duration="448000" />
+      <workItem from="1682856530089" duration="491000" />
+      <workItem from="1682960233696" duration="1199000" />
+      <workItem from="1683005468688" duration="1003000" />
+      <workItem from="1683021572735" duration="242000" />
+      <workItem from="1683022175465" duration="307000" />
+      <workItem from="1683098735056" duration="1157000" />
+      <workItem from="1683111962272" duration="3411000" />
+      <workItem from="1683180410818" duration="2650000" />
+      <workItem from="1683183999024" duration="2291000" />
+      <workItem from="1683263168447" duration="5807000" />
+      <workItem from="1683269399791" duration="44000" />
+      <workItem from="1683635881177" duration="11745000" />
+      <workItem from="1683702864480" duration="3414000" />
     </task>
     <servers />
   </component>

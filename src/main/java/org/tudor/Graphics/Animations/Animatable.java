@@ -1,5 +1,7 @@
 package org.tudor.Graphics.Animations;
 
+import java.util.UUID;
+
 /**
  * The Animatable interface is very light, it forces implementing classes to only provide the
  * <i>animate</i> method. This is because an animatable object only needs to do one thing from the
@@ -8,6 +10,23 @@ package org.tudor.Graphics.Animations;
  * @param <T> The type of state that the implementing class will want to animate.
  */
 public interface Animatable<T> {
+    /**
+     * Utility method for registering an Animatable for animations and making it responsible
+     * for its UUID.
+     */
+    public void registerForAnimations();
+
+    /**
+     * Utility method for unregistering an Animatable from animations.
+     */
+    public void unregisterFromAnimations();
+
+    /**
+     * Getter for the animations UUID.
+     * @return The UUID tied to this Animatable.
+     */
+    public UUID getAnimationIdentifier();
+
     /**
      * Changes the animatable state of the object to the new state.
      * @param newState The new state of the object.

@@ -1,7 +1,7 @@
 package org.tudor;
 
-import  org.tudor.GameWindow.GameWindow;
-import org.tudor.Graphics.Animations.AnimationHandler;
+import org.tudor.Entities.PlayerEntity;
+import org.tudor.GameWindow.GameWindow;
 import org.tudor.Graphics.Animations.AnimationManager;
 import org.tudor.Graphics.Assets.Assets;
 import org.tudor.Graphics.GameRenderer;
@@ -11,7 +11,6 @@ import org.tudor.Timer.TimerManager;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.util.UUID;
 
 /**
  * Main game engine class.
@@ -35,14 +34,9 @@ public class Game implements Runnable {
     private long            oldTime;
 
     // Driver code animation system demo
-    private HumanSkeleton testPlayer = null;
-    private UUID u;
-    private UUID uu;
-    private AnimationHandler<Point> a;
-    private AnimationHandler<Point> a1;
-    private AnimationHandler<Point> a2;
-    private AnimationHandler<Point> aa;
+    private PlayerEntity testPlayer = null;
     private boolean performedHello = false;
+    private boolean performedPunch = false;
 
     /** Creates the game window for the game.
      * @param title Window title
@@ -60,6 +54,7 @@ public class Game implements Runnable {
         // Create buffer strategy
         try {
             wnd.getCanvas().createBufferStrategy(3);
+            bs = wnd.getCanvas().getBufferStrategy();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -81,39 +76,8 @@ public class Game implements Runnable {
         rendererInstance = GameRenderer.shared();
 
         // Driver code to game demo
-        testPlayer = new HumanSkeleton(new Point(300, 400));
-        testPlayer.beginRendering();
-
-        u = AnimationManager.shared().registerForAnimations();
-        uu = AnimationManager.shared().registerForAnimations();
-
-        a = new AnimationHandler<>(
-                Point.class,
-                testPlayer.getJoint("fistRight"),
-                new Point(15, -25),
-                1000
-        );
-
-        a1 = new AnimationHandler<>(
-                Point.class,
-                testPlayer.getJoint("fistRight"),
-                new Point(-25, 5),
-                1000
-        );
-
-        a2 = new AnimationHandler<>(
-                Point.class,
-                testPlayer.getJoint("fistRight"),
-                new Point(25, 0),
-                1000
-        );
-
-        aa = new AnimationHandler<>(
-                Point.class,
-                testPlayer.getJoint("elbowRight"),
-                new Point(15, -15),
-                1000
-        );
+        HumanSkeleton s = new HumanSkeleton(new Point(300, 400));
+        testPlayer = new PlayerEntity(s);
     }
 
     /**
@@ -175,17 +139,19 @@ public class Game implements Runnable {
 
         // Driver code for game demo.
         if ( keyManager.right ) {
-            testPlayer.translatePosition(2, 0);
+            testPlayer.translatePosition(new Point(2,0));
         }
         if ( keyManager.left ) {
-            testPlayer.translatePosition(-2, 0);
+            testPlayer.translatePosition(new Point(-2,0));
         }
         if ( keyManager.space && !performedHello ) {
-            AnimationManager.shared().addAnimation(u, a);
-            AnimationManager.shared().addAnimation(u, a1);
-            AnimationManager.shared().addAnimation(u, a2);
-            AnimationManager.shared().addAnimation(uu, aa);
+            testPlayer.hello();
             performedHello = true;
+        }
+
+        if ( keyManager.up && !performedPunch ) {
+            testPlayer.punch();
+            performedPunch = true;
         }
 
         animationManager.update(elapsed);
@@ -197,8 +163,6 @@ public class Game implements Runnable {
      * Draws the elements to the screen according to the game state built in the Update() method.
      */
     private void Draw() {
-        bs = wnd.getCanvas().getBufferStrategy();
-
         Graphics2D g2d = (Graphics2D) bs.getDrawGraphics();
         g2d.clearRect(0, 0, wnd.getWndWidth(), wnd.getWndHeight());
 

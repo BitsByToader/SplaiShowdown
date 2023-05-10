@@ -2,7 +2,6 @@ package org.tudor.Graphics.Primitives;
 
 import org.jetbrains.annotations.NotNull;
 import org.tudor.Graphics.Animations.Animatable;
-import org.tudor.Graphics.Animations.AnimationHandler;
 import org.tudor.Graphics.Animations.AnimationManager;
 
 import java.awt.*;
@@ -79,8 +78,8 @@ public class CorePoint implements Animatable<Point> {
      * @param initialPosition The initial and base position of the CorePoint.
      */
     public CorePoint(Point initialPosition) {
-        relativePos = initialPosition;
-        basePos = initialPosition;
+        relativePos = new Point(initialPosition);
+        basePos = new Point(initialPosition);
     }
 
     /**
@@ -137,6 +136,14 @@ public class CorePoint implements Animatable<Point> {
      */
     public void registerForAnimations() {
         animationIdentifier = AnimationManager.shared().registerForAnimations();
+    }
+
+    /**
+     * Utility method for unregistering a CorePoint from animations.
+     */
+    public void unregisterFromAnimations() {
+        AnimationManager.shared().unregister(animationIdentifier);
+        animationIdentifier = null;
     }
 
     /**

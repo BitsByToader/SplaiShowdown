@@ -49,6 +49,11 @@ abstract public class BaseSkeleton {
     }
 
     /**
+     * Notifies the <i>GameRenderer</i> that this skeleton will need to be rendered.
+     */
+    public abstract void beginRendering();
+
+    /**
      * Getter for a body part of the skeleton.
      * @param name Name of the body part to retrieve.
      * @return The CoreRectangle associated with the body part.

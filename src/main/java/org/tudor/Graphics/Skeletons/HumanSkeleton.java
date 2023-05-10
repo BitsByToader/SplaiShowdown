@@ -33,8 +33,8 @@ public class HumanSkeleton extends BaseSkeleton {
         shoulderLeft.addChild(elbowLeft);
         shoulderRight.addChild(elbowRight);
 
-        CorePoint fistLeft = new CorePoint(new Point(0, 10));
-        CorePoint fistRight = new CorePoint(new Point(0, 10));
+        CorePoint fistLeft = new CorePoint(new Point(0, 18));
+        CorePoint fistRight = new CorePoint(new Point(0, 18));
         elbowLeft.addChild(fistLeft);
         elbowRight.addChild(fistRight);
 
@@ -45,10 +45,10 @@ public class HumanSkeleton extends BaseSkeleton {
         hipLeft.addChild(kneeLeft);
         hipRight.addChild(kneeRight);
 
-        CorePoint footLeft = new CorePoint(new Point(0, 10));
-        CorePoint footRight = new CorePoint(new Point(0, 10));
+        CorePoint footLeft = new CorePoint(new Point(0, 18));
+        CorePoint footRight = new CorePoint(new Point(0, 18));
         kneeLeft.addChild(footLeft);
-        kneeLeft.addChild(footRight);
+        kneeRight.addChild(footRight);
 
         CorePoint neck = new CorePoint(new Point(0,0));
         CorePoint hips = new CorePoint(new Point(0,40));
@@ -86,9 +86,6 @@ public class HumanSkeleton extends BaseSkeleton {
         super.setPosition(initialPosition.x, initialPosition.y);
     }
 
-    /**
-     * Notifies the <i>GameRenderer</i> that this skeleton will need to be rendered.
-     */
     public void beginRendering() {
         GameRenderer r = GameRenderer.shared();
         bodyParts.forEach( (k, v) -> {

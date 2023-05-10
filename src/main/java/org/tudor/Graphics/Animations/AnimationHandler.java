@@ -15,37 +15,20 @@ import java.lang.reflect.ParameterizedType;
  * <i>MainLoop design pattern</i> and can potentially allow more freedom with timing the animations.
  * @param <T> The type of the animatable state of the object we're animating.
  */
-public class AnimationHandler<T> {
-    /** The class of the state we're animating. */
-    private Class targetClass;
-
+abstract class AnimationHandler<T> {
     /** Current animation time. */
-    private int time = 0; // ms
-    /** The duration of the animation */
-    private int duration = 0; // ms
+     int time = 0; // ms
     /** Current value of the state we're animating. */
-    private T current = null;
-    /** The target state we're animating towards. */
-    private T target;
-    /** The entity we're animating. */
-    private Animatable<T> animatableEntity = null;
+    T current = null;
+    /** The animation that is animated by this handler. */
+    SubAnimation<Animatable<T>, T> animation = null;
 
     /**
-     * Constructs a handler that will animate an entity's state.
-     * @param targetClass The class of the state we're animating.
-     * @param entity The entity we're animating.
-     * @param target The target state we're animating towards.
-     * @param durationMs The duration of the animation in milliseconds.
+     * Constructs a handler that will animate a specific animation.
+     * @param animation The animation this AnimationHandler will handle.
      */
-    public AnimationHandler(Class targetClass, Animatable<T> entity, T target, int durationMs) {
-        this.animatableEntity = entity;
-        this.target = target;
-        this.duration = durationMs;
-        this.targetClass = targetClass;
-
-        if ( this.targetClass == Point.class ) {
-            current = (T) new Point(0,0);
-        }
+    public AnimationHandler(SubAnimation<Animatable<T>, T> animation) {
+        this.animation = new SubAnimation<>(animation);
     }
 
     /**
@@ -57,28 +40,37 @@ public class AnimationHandler<T> {
     }
 
     /**
-     * Getter for the duration of the animation.
+     * (Convenience) Getter for the duration of the animation.
      * @return The duration of the animation.
      */
-    long duration() { return duration; }
+    public long duration() {
+        return animation.durationMs;
+    }
+
+    /**
+     * Getter for the animation we're animating.
+     * @return The animation being animated by this handler.
+     */
+    public SubAnimation<Animatable<T>, T> animation() {
+        return animation;
+    }
+
+    /**
+     * Creates and returns an AnimationHandler for the next animation in the chain.
+     * @return The next handler to continue the animation.
+     */
+    public abstract AnimationHandler<T> getNextHandler();
+
+    /**
+     * Resets this animation handler to perform this animation one more time.
+     */
+    public void reset() {
+        // Reset the current time
+        time = 0;
+    }
 
     /**
      * Calculates the new state of the animation for the current time. Currently only Point targets are supported.
      */
-    @SuppressWarnings("unchecked")
-    public void calculateNewState() {
-        if ( targetClass == Point.class ) {
-            int targetX = ((Point) target).x;
-            int targetY = ((Point) target).y;
-
-            double newX = ( (double)targetX / duration ) * time;
-            double newY = ( (double)targetY / duration ) * time;
-
-            Point delta = new Point((int)newX - ((Point)current).x, (int)newY - ((Point)current).y);
-
-            animatableEntity.animate((T) delta);
-
-            current = (T) new Point((int)newX, (int)newY);
-        }
-    }
+    public abstract void calculateNewState();
 }
