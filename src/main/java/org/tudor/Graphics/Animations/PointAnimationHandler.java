@@ -8,7 +8,7 @@ public class PointAnimationHandler extends AnimationHandler<Point> {
     public PointAnimationHandler(SubAnimation<Animatable<Point>, Point> animation) {
         super(animation);
         current = new Point(0,0);
-        animation.target = ((CorePoint) animation.entity).getDeltaUsingBase(animation.target);
+        this.animation.target = ((CorePoint) this.animation.entity).getDeltaUsingBase(this.animation.target);
     }
 
     @Override
