@@ -87,4 +87,14 @@ public class KeyboardPlayer implements InputObserver {
             entity.translatePosition(new Point(2, 0));
         }
     }
+
+    public PlayerEntity getEntity() {
+        return entity;
+    }
+
+    public void cleanup() {
+        entity.freeze();
+        entity.stopDrawing();
+        KeyManager.shared().unregister(this);
+    }
 }

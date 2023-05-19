@@ -3,6 +3,7 @@ package org.tudor.Input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Singleton class that handles the keyboard inputs for the game. The sole purpose of this class is only
@@ -15,7 +16,7 @@ public class KeyManager implements KeyListener  {
     /** Singleton instance for the manager. */
     private static KeyManager singleton = null;
 
-    private List<InputObserver> observers = new LinkedList<>();
+    private List<InputObserver> observers = new CopyOnWriteArrayList<>();
 
     private HashMap<Integer, InputType> inputMap = new HashMap<>();
     private LinkedList<Input> inputBufferPlayer1 = new LinkedList<>();
@@ -44,6 +45,10 @@ public class KeyManager implements KeyListener  {
         inputMap.put(KeyEvent.VK_J,     InputType.PUNCHR);
         inputMap.put(KeyEvent.VK_K,     InputType.DEFENDR);
         inputMap.put(KeyEvent.VK_L,     InputType.KICKR);
+
+        // Set up input map for other keys
+        inputMap.put(KeyEvent.VK_ENTER, InputType.ENTER);
+        inputMap.put(KeyEvent.VK_ESCAPE, InputType.ESCAPE);
 
         // Set up combo 1
         combo1.add(InputType.PUNCHL);

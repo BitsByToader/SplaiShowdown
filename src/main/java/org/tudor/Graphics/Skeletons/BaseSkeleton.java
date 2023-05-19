@@ -53,6 +53,8 @@ abstract public class BaseSkeleton {
      */
     public abstract void beginRendering();
 
+    public abstract void stopRendering();
+
     /**
      * Getter for a body part of the skeleton.
      * @param name Name of the body part to retrieve.

@@ -94,6 +94,13 @@ public class HumanSkeleton extends BaseSkeleton {
         });
     }
 
+    public void stopRendering() {
+        GameRenderer r = GameRenderer.shared();
+        bodyParts.forEach( (k, v) -> {
+            r.removeFromQueue(v);
+        });
+    }
+
     public CoreRectangle getBodyPart(String name) {
         return bodyParts.get(name);
     };

@@ -1,12 +1,12 @@
 package org.tudor;
 
+import org.tudor.GameStates.GameState;
+import org.tudor.GameStates.MainMenuState;
 import org.tudor.GameWindow.GameWindow;
 import org.tudor.Graphics.Animations.AnimationManager;
 import org.tudor.Graphics.Assets.Assets;
 import org.tudor.Graphics.GameRenderer;
 import org.tudor.Input.KeyManager;
-import org.tudor.Players.KeyboardPlayer;
-import org.tudor.Players.KeyboardPlayerType;
 import org.tudor.Timer.TimerManager;
 
 import java.awt.*;
@@ -30,12 +30,12 @@ public class Game implements Runnable {
     private KeyManager          keyManager;
     private AnimationManager    animationManager;
     private TimerManager        timerManager;
+
+    private GameState currentState;
+    private GameState previousState = null;
+
     /** Previous time for the old frame. */
     private long            oldTime;
-
-    // Driver code animation system demo
-    private KeyboardPlayer player1 = null;
-    private KeyboardPlayer player2 = null;
 
     /** Creates the game window for the game.
      * @param title Window title
@@ -74,9 +74,9 @@ public class Game implements Runnable {
         // Create the render instance singleton
         rendererInstance = GameRenderer.shared();
 
-        // Driver code to game demo
-        player1 = new KeyboardPlayer(KeyboardPlayerType.PLAYER_1);
-        player2 = new KeyboardPlayer(KeyboardPlayerType.PLAYER_2);
+        // Initialize the first state of the game
+        currentState = new MainMenuState(this);
+        currentState.begin();
     }
 
     /**
@@ -93,8 +93,8 @@ public class Game implements Runnable {
             curentTime = System.nanoTime();
 
             if( (curentTime - oldTime) > timeFrame ) {
-                Update();
-                Draw();
+                update();
+                draw();
 
                 oldTime = curentTime;
             }
@@ -128,16 +128,35 @@ public class Game implements Runnable {
         }
     }
 
+    public void transition(GameState nextState) {
+        previousState = currentState;
+        previousState.cleanup();
+
+        currentState = nextState;
+        currentState.begin();
+    }
+
+    public void transitionToPreviousState() {
+        if ( previousState != null ) {
+            currentState.cleanup();
+
+            GameState temp = currentState;
+            currentState = previousState;
+            previousState = temp;
+
+            currentState.begin();
+        }
+    }
+
     /**
      * Handles all the game logic, thus updating the game state and all elements.
      */
-    private void Update() {
+    private void update() {
         long elapsed = ( System.nanoTime() - oldTime ) / 1000000;
 
         keyManager.update();
 
-        player1.update();
-        player2.update();
+        currentState.update(elapsed);
 
         animationManager.update(elapsed);
 
@@ -147,7 +166,7 @@ public class Game implements Runnable {
     /**
      * Draws the elements to the screen according to the game state built in the Update() method.
      */
-    private void Draw() {
+    private void draw() {
         Graphics2D g2d = (Graphics2D) bs.getDrawGraphics();
         g2d.clearRect(0, 0, wnd.getWndWidth(), wnd.getWndHeight());
 

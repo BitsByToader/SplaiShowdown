@@ -9,7 +9,6 @@ public class Entity {
 
     public Entity(BaseSkeleton s) {
         this.skeleton = s;
-        s.beginRendering();
     }
 
     public void translatePosition(Point p) {
@@ -18,6 +17,14 @@ public class Entity {
 
     public void setPosition(Point p) {
         this.skeleton.setPosition(p.x, p.y);
+    }
+
+    public void startDrawing() {
+        skeleton.beginRendering();
+    }
+
+    public void stopDrawing() {
+        skeleton.stopRendering();
     }
 
     public void update() {};
