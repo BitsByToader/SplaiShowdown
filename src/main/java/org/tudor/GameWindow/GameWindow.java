@@ -53,6 +53,7 @@ public class GameWindow {
         canvas.setPreferredSize(new Dimension(wndWidth, wndHeight));
         canvas.setMaximumSize(new Dimension(wndWidth, wndHeight));
         canvas.setMinimumSize(new Dimension(wndWidth, wndHeight));
+        canvas.setBackground(new Color(255, 255, 255));
 
         // Add canvas to window
         wndFrame.add(canvas);

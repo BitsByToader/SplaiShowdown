@@ -1,7 +1,6 @@
 package org.tudor.GameStates;
 
 import org.tudor.Game;
-import org.tudor.Graphics.Animations.Animatable;
 import org.tudor.Graphics.Animations.AnimationManager;
 import org.tudor.Graphics.Animations.PointAnimationHandler;
 import org.tudor.Graphics.Animations.SubAnimation;
@@ -33,41 +32,44 @@ public class MainMenuState extends GameState implements InputObserver {
     public MainMenuState(Game context) {
         super(context);
 
-        logoCp = new CorePoint(new Point(300, 100));
-        CorePoint logo2 = new CorePoint(new Point(100, 0));
+        logoCp = new CorePoint(new Point(400, 50));
+        CorePoint logo2 = new CorePoint(new Point(0, 100));
         logoCp.addChild(logo2);
         logoRect = new CoreRectangle(
-                Assets.partLarge,
+                Assets.logo,
                 logoCp,
                 logo2
         );
 
-        playButtonCp = new CorePoint(new Point(200, 300));
-        CorePoint pb2 = new CorePoint(new Point(100, 0));
-        logoCp.addChild(pb2);
+        playButtonCp = new CorePoint(new Point(400, 300));
+        CorePoint pb2 = new CorePoint(new Point(0, 25));
+        playButtonCp.addChild(pb2);
         playButtonRect = new CoreRectangle(
-                Assets.partLarge,
+                Assets.multiplayer_btn,
                 playButtonCp,
                 pb2
         );
+        playButtonRect.setZIndex(1);
 
-        quitButtonCp = new CorePoint(new Point(200, 400));
-        CorePoint qb2 = new CorePoint(new Point(100, 0));
+        quitButtonCp = new CorePoint(new Point(400, 400));
+        CorePoint qb2 = new CorePoint(new Point(0, 25));
         quitButtonCp.addChild(qb2);
         quitButtonRect = new CoreRectangle(
-                Assets.partLarge,
+                Assets.quit_btn,
                 quitButtonCp,
                 qb2
         );
+        quitButtonRect.setZIndex(1);
 
-        selectorCp = new CorePoint(new Point(100, 300));
-        CorePoint s2 = new CorePoint(new Point(50, 0));
+        selectorCp = new CorePoint(new Point(400, 300));
+        CorePoint s2 = new CorePoint(new Point(0, 75));
         selectorCp.addChild(s2);
         selectorRect = new CoreRectangle(
-                Assets.head,
+                Assets.menu_selector,
                 selectorCp,
                 s2
         );
+        selectorRect.setZIndex(2);
         selectorCp.registerForAnimations();
     }
 

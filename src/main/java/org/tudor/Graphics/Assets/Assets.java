@@ -1,5 +1,6 @@
 package org.tudor.Graphics.Assets;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
@@ -12,6 +13,10 @@ public class Assets {
     public static BufferedImage partLarge;
     /** Test texture for a head, i.e. a filled in circle. */
     public static BufferedImage head;
+    public static BufferedImage logo;
+    public static BufferedImage multiplayer_btn;
+    public static BufferedImage quit_btn;
+    public static BufferedImage menu_selector;
 
     /**
      * Private constructor since this is a static class.
@@ -25,5 +30,9 @@ public class Assets {
         partSmall = ImageLoader.loadImage("/part_small.png");
         partLarge = ImageLoader.loadImage("/part.png");
         head = ImageLoader.loadImage("/head.png");
+        logo = ImageLoader.loadImage("/logo.png");
+        multiplayer_btn = ImageLoader.loadImage("/multiplayer_button.png");
+        quit_btn = ImageLoader.loadImage("/quit_btn.png");
+        menu_selector = ImageLoader.loadImage("/menu_selector.png");
     }
 }

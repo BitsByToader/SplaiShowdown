@@ -7,18 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f119ca68-6ddc-46ec-a71e-e24ff5370176" name="Changes" comment="Changed the behaviour of the AnimationManager to respect the rest of the changes of the Animation System. Added the Observer pattern and combo detection to the KeyManager.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/GameState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/MainMenuState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/PlayState.java" afterDir="false" />
+    <list default="true" id="f119ca68-6ddc-46ec-a71e-e24ff5370176" name="Changes" comment="Added the folloswing GameStates to the game: MainMenu and Play.">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/menu_selector.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/multiplayer_button.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/quit_btn.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/BaseSkeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/BaseSkeleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/HumanSkeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/HumanSkeleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Input/InputType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Input/InputType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Input/KeyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Input/KeyManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Players/KeyboardPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Players/KeyboardPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/MainMenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/MainMenuState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/GameWindow/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameWindow/GameWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Assets/Assets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Assets/Assets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CoreRectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CoreRectangle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +169,7 @@
       <workItem from="1684402487176" duration="1378000" />
       <workItem from="1684478578789" duration="19264000" />
       <workItem from="1684508742641" duration="1855000" />
-      <workItem from="1684511525668" duration="1838000" />
+      <workItem from="1684511525668" duration="5500000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed the bug that caused a week's worth of pulling my hair and broken animations. The system works flawlessly now, the animations just need some touching up.">
       <created>1684069614158</created>
@@ -187,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684482344781</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added the folloswing GameStates to the game: MainMenu and Play.">
+      <created>1684514162593</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1684514162593</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,7 +213,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Fixed the bug that caused a week's worth of pulling my hair and broken animations. The system works flawlessly now, the animations just need some touching up." />
     <MESSAGE value="Changed the behaviour of the AnimationManager to respect the rest of the changes of the Animation System. Added the Observer pattern and combo detection to the KeyManager." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed the behaviour of the AnimationManager to respect the rest of the changes of the Animation System. Added the Observer pattern and combo detection to the KeyManager." />
+    <MESSAGE value="Added the folloswing GameStates to the game: MainMenu and Play." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the folloswing GameStates to the game: MainMenu and Play." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
