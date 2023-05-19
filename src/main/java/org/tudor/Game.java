@@ -1,12 +1,12 @@
 package org.tudor;
 
-import org.tudor.Entities.PlayerEntity;
 import org.tudor.GameWindow.GameWindow;
 import org.tudor.Graphics.Animations.AnimationManager;
 import org.tudor.Graphics.Assets.Assets;
 import org.tudor.Graphics.GameRenderer;
-import org.tudor.Graphics.Skeletons.HumanSkeleton;
 import org.tudor.Input.KeyManager;
+import org.tudor.Players.KeyboardPlayer;
+import org.tudor.Players.KeyboardPlayerType;
 import org.tudor.Timer.TimerManager;
 
 import java.awt.*;
@@ -34,9 +34,8 @@ public class Game implements Runnable {
     private long            oldTime;
 
     // Driver code animation system demo
-    private PlayerEntity testPlayer = null;
-    private boolean performedHello = false;
-    private boolean performedPunch = false;
+    private KeyboardPlayer player1 = null;
+    private KeyboardPlayer player2 = null;
 
     /** Creates the game window for the game.
      * @param title Window title
@@ -76,8 +75,8 @@ public class Game implements Runnable {
         rendererInstance = GameRenderer.shared();
 
         // Driver code to game demo
-        HumanSkeleton s = new HumanSkeleton(new Point(300, 400));
-        testPlayer = new PlayerEntity(s);
+        player1 = new KeyboardPlayer(KeyboardPlayerType.PLAYER_1);
+        player2 = new KeyboardPlayer(KeyboardPlayerType.PLAYER_2);
     }
 
     /**
@@ -137,22 +136,8 @@ public class Game implements Runnable {
 
         keyManager.update();
 
-        // Driver code for game demo.
-        if ( keyManager.right ) {
-            testPlayer.translatePosition(new Point(2,0));
-        }
-        if ( keyManager.left ) {
-            testPlayer.translatePosition(new Point(-2,0));
-        }
-        if ( keyManager.space && !performedHello ) {
-            testPlayer.hello();
-            performedHello = true;
-        }
-
-        if ( keyManager.up && !performedPunch ) {
-            testPlayer.punch();
-            performedPunch = true;
-        }
+        player1.update();
+        player2.update();
 
         animationManager.update(elapsed);
 

@@ -61,6 +61,8 @@ abstract class AnimationHandler<T> {
      */
     public abstract AnimationHandler<T> getNextHandler();
 
+    public abstract void startAnimation();
+
     /**
      * Resets this animation handler to perform this animation one more time.
      */

@@ -24,7 +24,7 @@ public class AnimationManager {
     private static AnimationManager singleton = null;
 
     /** Maps every registrant's animation queue to their UUID. */
-    private HashMap<UUID, Queue<AnimationHandler<?>>> animatables = new HashMap<>();
+    private HashMap<UUID, Deque<AnimationHandler<?>>> animatables = new HashMap<>();
     /** Maps every registrant's timer to their UUID. */
     private HashMap<UUID, SyncTimer<AnimationHandler<?>>> timers = new HashMap<>();
 
@@ -41,12 +41,11 @@ public class AnimationManager {
     private Consumer<AnimationHandler<?>> animationFinish = new Consumer<AnimationHandler<?>>() {
         @Override
         public void accept(AnimationHandler<?> animationHandler) {
-            System.out.println("ANIMATION FINISH: " + ((CorePoint)animationHandler.animation.entity).getRelativePos());
             animationHandler.reset();
 
             AnimationHandler<?> next = animationHandler.getNextHandler();
             if ( next != null ) {
-                AnimationManager.shared().addAnimation(
+                AnimationManager.shared().forceAnimationInFront(
                         animationHandler.animation().entity.getAnimationIdentifier(),
                         next
                 );
@@ -104,11 +103,20 @@ public class AnimationManager {
         animatables.get(uuid).offer(animation);
     }
 
+    public void forceAnimationInFront(UUID uuid, AnimationHandler<?> animation) {
+        animatables.get(uuid).offerFirst(animation);
+    }
+
     /**
      * Clears the queue.
      * @param u The UUID of the queue that's being cleared.
      */
     public void clearQueue(UUID u) {
+        if ( timers.get(u) != null ) {
+            // Stop any timers that are associated with this queue
+            timers.get(u).stop();
+            timers.remove(u);
+        }
         animatables.put(u, new LinkedList<>());
     }
 
@@ -139,6 +147,10 @@ public class AnimationManager {
                 timers.put(uuid, null);
                 return;
             }
+
+            // Tell the next handler to do all calculations necessary for an animation
+            // start because we're planning on doing it now.
+            handler.startAnimation();
 
             // Set up the timer that will perform the animation every frame
             SyncTimer<AnimationHandler<?>> t = new SyncTimer<>(handler.duration(),

@@ -1,7 +1,6 @@
 package org.tudor.Entities;
 
 import org.tudor.Graphics.Animations.*;
-import org.tudor.Graphics.Primitives.CorePoint;
 import org.tudor.Graphics.Skeletons.HumanSkeleton;
 
 import java.awt.*;
@@ -24,11 +23,11 @@ public class PlayerEntity extends Entity {
                 1000,
                 new SubAnimation<>(
                         skeleton.getJoint("fistRight"),
-                        new Point(-25, 5),
+                        new Point(-10, -20),
                         1000,
                         new SubAnimation<>(
                                 skeleton.getJoint("fistRight"),
-                                new Point(25, 0),
+                                new Point(15, -20),
                                 1000,
                                 null
                         )
@@ -57,11 +56,11 @@ public class PlayerEntity extends Entity {
 
         punchSubAnimations.add(new SubAnimation<>(
                 skeleton.getJoint("fistRight"),
-                new Point(8, -37), // 8 -37
+                new Point(8, -37),
                 500,
                 new SubAnimation<>(
                         skeleton.getJoint("fistRight"),
-                        new Point(18, -22), // 10 15
+                        new Point(18, -22),
                         500,
                         null
                 )
@@ -69,14 +68,14 @@ public class PlayerEntity extends Entity {
     }
 
     public void hello() {
-        AnimationManager.shared().clearQueue(skeleton.getJoint("elbowRight").getAnimationIdentifier());
-        AnimationManager.shared().clearQueue(skeleton.getJoint("fistRight").getAnimationIdentifier());
+        freeze();
         sendAnimationToManager(helloSubAnimations);
     }
 
     public void punch() {
-        AnimationManager.shared().clearQueue(skeleton.getJoint("elbowRight").getAnimationIdentifier());
-        AnimationManager.shared().clearQueue(skeleton.getJoint("fistRight").getAnimationIdentifier());
+        // Stop any current animations
+        freeze();
+        // Start the punch animation
         sendAnimationToManager(punchSubAnimations);
     }
 
@@ -88,6 +87,11 @@ public class PlayerEntity extends Entity {
                     new PointAnimationHandler(a)
             );
         }
+    }
+
+    public void freeze() {
+        AnimationManager.shared().clearQueue(skeleton.getJoint("elbowRight").getAnimationIdentifier());
+        AnimationManager.shared().clearQueue(skeleton.getJoint("fistRight").getAnimationIdentifier());
     }
 
     @Override

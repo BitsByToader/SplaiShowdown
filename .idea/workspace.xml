@@ -7,9 +7,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f119ca68-6ddc-46ec-a71e-e24ff5370176" name="Changes" comment="">
+    <list default="true" id="f119ca68-6ddc-46ec-a71e-e24ff5370176" name="Changes" comment="Fixed the bug that caused a week's worth of pulling my hair and broken animations. The system works flawlessly now, the animations just need some touching up.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Input/Input.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Input/InputObserver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Input/InputType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Players/KeyboardPlayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Players/KeyboardPlayerType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Entities/PlayerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Entities/PlayerEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/PointAnimationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/PointAnimationHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Input/KeyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Input/KeyManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +46,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -149,8 +160,26 @@
       <workItem from="1683725947487" duration="588000" />
       <workItem from="1683789078772" duration="1643000" />
       <workItem from="1683871754394" duration="1938000" />
-      <workItem from="1684061712905" duration="5993000" />
+      <workItem from="1684061712905" duration="7560000" />
+      <workItem from="1684129099147" duration="579000" />
+      <workItem from="1684151235058" duration="2778000" />
+      <workItem from="1684155737656" duration="5160000" />
+      <workItem from="1684241607839" duration="1746000" />
+      <workItem from="1684245105384" duration="2704000" />
+      <workItem from="1684299758694" duration="5335000" />
+      <workItem from="1684321410828" duration="2096000" />
+      <workItem from="1684392152873" duration="2560000" />
+      <workItem from="1684402487176" duration="1378000" />
+      <workItem from="1684478578789" duration="2133000" />
     </task>
+    <task id="LOCAL-00001" summary="Fixed the bug that caused a week's worth of pulling my hair and broken animations. The system works flawlessly now, the animations just need some touching up.">
+      <created>1684069614158</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1684069614158</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,5 +198,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Fixed the bug that caused a week's worth of pulling my hair and broken animations. The system works flawlessly now, the animations just need some touching up." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the bug that caused a week's worth of pulling my hair and broken animations. The system works flawlessly now, the animations just need some touching up." />
   </component>
 </project>
