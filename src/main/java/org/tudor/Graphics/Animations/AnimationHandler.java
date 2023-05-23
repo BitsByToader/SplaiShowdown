@@ -1,11 +1,6 @@
 package org.tudor.Graphics.Animations;
 
-import java.awt.*;
-import java.lang.reflect.ParameterizedType;
-
 /**
- * While it's called a handler, it also defines the actual animation that is performing. Since animations are
- * relative to a previous state, the traits of an animation are as follows: duration and a target state.
  * While currently linear, this class will be made abstract so that it can be extended, so it can support
  * linear, exponential, ease-in, ease-out, etc animations.
  * AnimationHandlers also require an entity that will be animated, which conforms to the <i>Animatable</i>
@@ -21,7 +16,7 @@ abstract class AnimationHandler<T> {
     /** Current value of the state we're animating. */
     T current = null;
     /** The animation that is animated by this handler. */
-    SubAnimation<Animatable<T>, T> animation = null;
+    SubAnimation<Animatable<T>, T> animation;
 
     /**
      * Constructs a handler that will animate a specific animation.
@@ -56,11 +51,14 @@ abstract class AnimationHandler<T> {
     }
 
     /**
-     * Creates and returns an AnimationHandler for the next animation in the chain.
+     * Creates and returns an AnimationHandler for the next sub-animation in the chain.
      * @return The next handler to continue the animation.
      */
     public abstract AnimationHandler<T> getNextHandler();
 
+    /**
+     * Makes any necessary calculations to start the animation.
+     */
     public abstract void startAnimation();
 
     /**
@@ -72,7 +70,7 @@ abstract class AnimationHandler<T> {
     }
 
     /**
-     * Calculates the new state of the animation for the current time. Currently only Point targets are supported.
+     * Calculates the new state of the animation for the current time.
      */
     public abstract void calculateNewState();
 }

@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Implementation of <i>BaseSkeleton</i> for a Human skeleton, using <i>HashMaps</i> for storing the
@@ -102,14 +101,12 @@ public class HumanSkeleton extends BaseSkeleton {
     public void stopRendering() {
         GameRenderer r = GameRenderer.shared();
 
-        bodyParts.forEach( (k, v) -> {
-            r.removeFromQueue(v);
-        });
+        bodyParts.forEach( (k, v) -> r.removeFromQueue(v));
     }
 
     public CoreRectangle getBodyPart(String name) {
         return bodyParts.get(name);
-    };
+    }
 
     public CorePoint getJoint(String name) {
         return joints.get(name);
@@ -119,6 +116,4 @@ public class HumanSkeleton extends BaseSkeleton {
     public Collection<CorePoint> getJoints() {
         return joints.values();
     }
-
-    ;
 }

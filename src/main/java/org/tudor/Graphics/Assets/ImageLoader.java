@@ -2,6 +2,7 @@ package org.tudor.Graphics.Assets;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 /**
  * Static class for loading an image for non-volatile storage.
@@ -19,9 +20,9 @@ public class ImageLoader {
      */
     public static BufferedImage loadImage(String path) {
         try {
-            return ImageIO.read(ImageLoader.class.getResource(path));
+            return ImageIO.read(Objects.requireNonNull(ImageLoader.class.getResource(path)));
         } catch (Exception e ) {
-            System.out.println(e);
+            e.printStackTrace();
         }
 
         return null;

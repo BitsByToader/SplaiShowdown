@@ -27,7 +27,7 @@ public class CorePoint implements Animatable<Point> {
     /** Parent of the CorePoint. */
     private CorePoint parent = null;
     /** Children of this CorePoint. */
-    private ArrayList<CorePoint> children = new ArrayList<>();
+    private final ArrayList<CorePoint> children = new ArrayList<>();
 
     /**
      * The identifier used when interacting with the Animation Manager. While identifiers can
@@ -37,6 +37,7 @@ public class CorePoint implements Animatable<Point> {
      */
     private UUID animationIdentifier = null;
 
+    /** Indicates if this CorePoint is performing an animation. */
     private boolean animating = false;
 
     /**
@@ -48,7 +49,7 @@ public class CorePoint implements Animatable<Point> {
      * really helpful because we can recursively determine absolute positions for the other CorePoints very
      * easily, e.g. when drawing textures.
      */
-    private Point relativePos;
+    private final Point relativePos;
 
     /**
      * The relative position of a CorePoint when it is in its base state. The base point of a
@@ -57,7 +58,7 @@ public class CorePoint implements Animatable<Point> {
      * reference animations from the base state, and then calculate delta positions from one
      * state of an animation to another easily.
      */
-    private Point basePos;
+    private final Point basePos;
 
     /**
      * A fixedToParent CorePoint will not allow its children to modify its location during a
@@ -163,7 +164,7 @@ public class CorePoint implements Animatable<Point> {
     }
 
     @Override
-    public void stopAnimating() {
+    public void animationHasStopped() {
         animating = false;
     }
 

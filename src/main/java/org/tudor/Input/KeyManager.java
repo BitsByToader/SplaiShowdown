@@ -6,23 +6,26 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Singleton class that handles the keyboard inputs for the game. The sole purpose of this class is only
- * to gather the inputs every frame, nothing more. A future class will deal with the logic of processing
- * what was received from the keyboard.
+ * Singleton class that handles the keyboard inputs for the game. Using the <i>Observer Pattern</i>, it
+ * allows anyone to register to it to be able to receive keyboard input in an <b>asynchronous</b> way.
  */
 public class KeyManager implements KeyListener  {
-    private static long INPUT_EXPIRE_TIME_MS = 1000;
-
     /** Singleton instance for the manager. */
     private static KeyManager singleton = null;
 
-    private List<InputObserver> observers = new CopyOnWriteArrayList<>();
+    /** A list of observers that want to receive keyboard input. */
+    private final List<InputObserver> observers = new CopyOnWriteArrayList<>();
 
-    private HashMap<Integer, InputType> inputMap = new HashMap<>();
-    private LinkedList<Input> inputBufferPlayer1 = new LinkedList<>();
-    private LinkedList<Input> inputBufferPlayer2 = new LinkedList<>();
-    private LinkedList<InputType> combo1 = new LinkedList<>();
-    private LinkedList<InputType> combo2 = new LinkedList<>();
+    /** Maps key codes to InputTypes.*/
+    private final HashMap<Integer, InputType> inputMap = new HashMap<>();
+    /** Input buffer for Player1 for combo detection. */
+    private final LinkedList<Input> inputBufferPlayer1 = new LinkedList<>();
+    /** Input buffer for Player2 for combo detection. */
+    private final LinkedList<Input> inputBufferPlayer2 = new LinkedList<>();
+    /** List describing the moves for combo1. */
+    private final LinkedList<InputType> combo1 = new LinkedList<>();
+    /** List describing the moves for combo2. */
+    private final LinkedList<InputType> combo2 = new LinkedList<>();
 
     /**
      * Private constructor for the singleton design pattern.
@@ -78,7 +81,7 @@ public class KeyManager implements KeyListener  {
     }
 
     /**
-     * stub
+     * Checks for any combos in the input buffers.
      */
     public void update() {
         removeExpiredInputs(inputBufferPlayer1);
@@ -103,27 +106,46 @@ public class KeyManager implements KeyListener  {
         }
     }
 
+    /**
+     * Unmarks all inputs after a combo detection check
+     * @param inputs An input buffer.
+     */
     private void unMarkInputs(LinkedList<Input> inputs) {
         for ( Input i: inputs) {
             i.marked = false;
         }
     }
 
+    /**
+     * Removes all marked inputs from the buffer after a combo was detected.
+     * @param inputs An input buffer.
+     */
     private void removeMarkedInputs(LinkedList<Input> inputs) {
         inputs.removeIf(input -> input.marked);
     }
 
+    /**
+     * Removes expired inputs from the buffer.
+     * @param inputs An input buffer.
+     */
     private void removeExpiredInputs(LinkedList<Input> inputs) {
         long time = System.currentTimeMillis();
 
         Iterator<Input> it = inputs.iterator();
         while ( it.hasNext() ) {
             Input i = it.next();
-            if ( time - i.activationTime > INPUT_EXPIRE_TIME_MS )
+            long INPUT_EXPIRE_TIME_MS = 1000;
+            if (time - i.activationTime > INPUT_EXPIRE_TIME_MS)
                 it.remove();
         }
     }
 
+    /**
+     * Detects a combo.
+     * @param combo The combo to detect in the buffer.
+     * @param inputs The buffer to search for the combo.
+     * @return Whether the combo was detected in the buffer.
+     */
     private boolean detectCombo(LinkedList<InputType> combo, LinkedList<Input> inputs) {
         //TODO: Refactor the method to check for combos in larger inputBuffers as well.
         // This works for now as the method is called quickly enough to detect the combo
@@ -179,10 +201,18 @@ public class KeyManager implements KeyListener  {
     @Override
     public void keyTyped(KeyEvent e) {}
 
+    /**
+     * Registers an observer to receive inputs.
+     * @param o The new observer.
+     */
     public void register(InputObserver o) {
         observers.add(o);
     }
 
+    /**
+     * Unregisters an observer.
+     * @param o The observer that doesn't want to receive inputs anymore.
+     */
     public void unregister(InputObserver o) {
         observers.remove(o);
     }

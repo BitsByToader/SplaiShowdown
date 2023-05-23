@@ -4,7 +4,13 @@ import org.tudor.Graphics.Primitives.CorePoint;
 
 import java.awt.*;
 
+/**
+ * Extends the AnimationHandler class to provide implementations for specific calculations that are done
+ * on Point animatables and differ from other animatable types.
+ */
 public class PointAnimationHandler extends AnimationHandler<Point> {
+    /** The actual, absolute, target we're animating towards calculated from the relative value
+     * found in the sub-animation. */
     private Point actualTarget = null;
 
     public PointAnimationHandler(SubAnimation<Animatable<Point>, Point> animation) {
@@ -26,7 +32,7 @@ public class PointAnimationHandler extends AnimationHandler<Point> {
         // Calculate the actual target we're animating towards using the delta target from the
         // base position.
         this.actualTarget = ((CorePoint) this.animation.entity).getDeltaUsingBase(this.animation.target);
-    };
+    }
 
     @Override
     public void reset() {

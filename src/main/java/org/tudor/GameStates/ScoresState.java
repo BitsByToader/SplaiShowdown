@@ -10,14 +10,21 @@ import org.tudor.Input.InputObserver;
 import org.tudor.Input.InputType;
 import org.tudor.Input.KeyManager;
 
-import javax.xml.crypto.Data;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Extends the GameState class to handle scoreboard logic.
+ */
 public class ScoresState extends GameState implements InputObserver {
+    /** List of previous matches. */
     private List<CoreText> scoresList;
 
+    /**
+     * Constructor the sets up the scoreboard.
+     * @param context The Game context.
+     */
     public ScoresState(Game context) {
         super(context);
 
@@ -45,6 +52,9 @@ public class ScoresState extends GameState implements InputObserver {
     @Override
     public void update(long elapsedMs) {/*stub*/}
 
+    /**
+     * Begins rendering the scoreboard lines.
+     */
     @Override
     public void begin() {
         for (CoreText t: scoresList ) {
@@ -53,6 +63,9 @@ public class ScoresState extends GameState implements InputObserver {
         KeyManager.shared().register(this);
     }
 
+    /**
+     * Stops rendering the scoreboard lines.
+     */
     @Override
     public void cleanup() {
         for (CoreText t: scoresList ) {

@@ -7,11 +7,23 @@ import org.tudor.Graphics.Skeletons.HumanSkeleton;
 import java.awt.*;
 import java.util.Vector;
 
+/**
+ * An extension of the Entity clase, the PlayerEntity defines the possible behaviours of a player entity
+ * in the game. At this point in time, a player can punch to the left and to the right, defend, and move.
+ */
 public class PlayerEntity extends Entity {
-    private Vector<SubAnimation<Animatable<Point>, Point>> punchRightSubAnimations = new Vector<>();
-    private Vector<SubAnimation<Animatable<Point>, Point>> punchLeftSubAnimations = new Vector<>();
-    private Vector<SubAnimation<Animatable<Point>, Point>> defendSubAnimations = new Vector<>();
+    /** Sub-animations needed to perform a punch to the right animation. */
+    private final Vector<SubAnimation<Animatable<Point>, Point>> punchRightSubAnimations = new Vector<>();
+    /** Sub-animations needed to perform a punch to the left animation. */
+    private final Vector<SubAnimation<Animatable<Point>, Point>> punchLeftSubAnimations = new Vector<>();
+    /** Sub-animations needed to perform a defend animation. */
+    private final Vector<SubAnimation<Animatable<Point>, Point>> defendSubAnimations = new Vector<>();
 
+    /**
+     * Constructor for the PlayerEntity class. It sets up the animations and the bounding box of the
+     * entity.
+     * @param s The skeleton used for the entity.
+     */
     public PlayerEntity(HumanSkeleton s) {
         super(s);
 
@@ -89,20 +101,33 @@ public class PlayerEntity extends Entity {
         ));
     }
 
+    /**
+     * Performs a punch to the right animation.
+     */
     public void punchRight() {
         sendAnimationToManager(punchRightSubAnimations);
         returnSkeletonToBase();
     }
 
+    /**
+     * Performs a punch to the left animation.
+     */
     public void punchLeft() {
         sendAnimationToManager(punchLeftSubAnimations);
         returnSkeletonToBase();
     }
 
+    /**
+     * Performs a defend animation.
+     */
     public void defend() {
         sendAnimationToManager(defendSubAnimations);
     }
 
+    /**
+     * Sends a sub-animation to the AnimationManager.
+     * @param animations A list of sub animations to perform.
+     */
     private void sendAnimationToManager(Vector<SubAnimation<Animatable<Point>, Point>> animations) {
         AnimationManager m = AnimationManager.shared();
         for ( SubAnimation<Animatable<Point>, Point> a: animations ) {
@@ -113,6 +138,9 @@ public class PlayerEntity extends Entity {
         }
     }
 
+    /**
+     * Stops any current animations this entity is performing.
+     */
     public void freeze() {
         AnimationManager.shared().clearQueue(skeleton.getJoint("elbowRight").getAnimationIdentifier());
         AnimationManager.shared().clearQueue(skeleton.getJoint("fistRight").getAnimationIdentifier());
@@ -123,6 +151,9 @@ public class PlayerEntity extends Entity {
         AnimationManager.shared().clearQueue(skeleton.getJoint("neck").getAnimationIdentifier());
     }
 
+    /**
+     * Returns the entity to its base position.
+     */
     public void returnSkeletonToBase() {
         returnJointToBase("elbowRight");
         returnJointToBase("fistRight");
@@ -132,6 +163,10 @@ public class PlayerEntity extends Entity {
         returnJointToBase("hipRight");
     }
 
+    /**
+     * Returns the joint to its base position via an animation.
+     * @param jointName The joint to return.
+     */
     private void returnJointToBase(String jointName) {
         AnimationManager.shared().addAnimation(
                 skeleton.getJoint(jointName).getAnimationIdentifier(),
@@ -144,6 +179,10 @@ public class PlayerEntity extends Entity {
         );
     }
 
+    /**
+     * Checks if the entity is currently performing an animation.
+     * @return Whether or not an animation is performed.
+     */
     public boolean isAnimating() {
         for ( CorePoint joint: skeleton.getJoints() ) {
             if ( joint.isAnimating() )
@@ -153,6 +192,11 @@ public class PlayerEntity extends Entity {
         return false;
     }
 
+    /**
+     * Gets a joint from the skeleton
+     * @param name The joint name.
+     * @return The requested joint.
+     */
     public CorePoint getJoint(String name) { return skeleton.getJoint(name); }
 
     @Override

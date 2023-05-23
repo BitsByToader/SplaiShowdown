@@ -11,7 +11,7 @@ public class TimerManager {
     private static TimerManager singleton = null;
 
     /** List of actively running timers. Any finished/stopped timers are removed from the list. */
-    private ArrayList<SyncTimer<?>> timers = new ArrayList<>();
+    private final ArrayList<SyncTimer<?>> timers = new ArrayList<>();
 
     /** Private contructor for the Singleton pattern. */
     private TimerManager() {}

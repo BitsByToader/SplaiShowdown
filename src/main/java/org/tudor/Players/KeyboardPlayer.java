@@ -10,17 +10,32 @@ import org.tudor.Input.KeyManager;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * This needs to be abstracted into a base Player interface/abstract class!
+ * This class manages the behaviour of a Player controlled by a Keyboard, using a micro-state-machine.
+ */
 public class KeyboardPlayer implements InputObserver {
-    private PlayerEntity entity = null;
-    private KeyboardPlayerType type;
+    /** The player entity this class controls. */
+    private final PlayerEntity entity;
+    /** The type of player this instance represents. */
+    private final KeyboardPlayerType type;
 
+    /** Health of the player. */
     private Integer health = 100;
 
+    /** Whether the player is moving left. */
     private boolean movingLeft = false;
+    /** Whether the player is moving right. */
     private boolean movingRight = false;
+    /** The orientation of the player. */
     private PlayerOrientationState orientation = PlayerOrientationState.RIGHT;
+    /** The current state of the player. */
     private PlayerState state = PlayerState.IDLE;
 
+    /**
+     * Constructor that sets up the player entity and registers to the KeyManager.
+     * @param t The type of keyboard player.
+     */
     public KeyboardPlayer(KeyboardPlayerType t) {
         HumanSkeleton s = null;
         if ( t == KeyboardPlayerType.PLAYER_1) {
@@ -39,12 +54,8 @@ public class KeyboardPlayer implements InputObserver {
         switch (type) {
             case PLAYER_1 -> {
                 switch (i) {
-                    case LEFTL -> {
-                        movingLeft = false;
-                    }
-                    case RIGHTL -> {
-                        movingRight = false;
-                    }
+                    case LEFTL -> movingLeft = false;
+                    case RIGHTL -> movingRight = false;
                     case DEFENDL -> {
                         entity.freeze();
                         entity.returnSkeletonToBase();
@@ -132,6 +143,9 @@ public class KeyboardPlayer implements InputObserver {
         }
     }
 
+    /**
+     * Updates the state machine.
+     */
     public void update() {
         if ( state != PlayerState.DEFENDING ) {
             state = entity.isAnimating() ? PlayerState.ANIMATING : PlayerState.IDLE;
@@ -148,22 +162,37 @@ public class KeyboardPlayer implements InputObserver {
         }
     }
 
+    /**
+     * Getter for the entity of this player.
+     * @return The entity in question.
+     */
     public PlayerEntity getEntity() {
         return entity;
     }
 
+    /**
+     * Performs clean-up operations: freeze the entity, removes it from the render queue and
+     * unregisters from the KeyManager.
+     */
     public void cleanup() {
         entity.freeze();
         entity.stopDrawing();
         KeyManager.shared().unregister(this);
     }
 
+    /**
+     * Getter for the health.
+     * @return Player health.
+     */
     public Integer getHealth() {
         return health;
     }
 
-    public CorePoint getJoint(String name) { return entity.getJoint(name); }
-
+    /**
+     * Hit checker between this player and another player.
+     * @param p The other player to check hits on.
+     * @return If there was a hit caused by this player.
+     */
     public boolean checkHitOn(KeyboardPlayer p) {
         if ( this.state != PlayerState.ANIMATING || p.state == PlayerState.DEFENDING )
             return false;
@@ -184,6 +213,10 @@ public class KeyboardPlayer implements InputObserver {
         return false;
     }
 
+    /**
+     * Informs the player that it was hit.
+     * @param dmg The damage it took.
+     */
     public void inflictDamage(int dmg) {
         health -= dmg;
     }

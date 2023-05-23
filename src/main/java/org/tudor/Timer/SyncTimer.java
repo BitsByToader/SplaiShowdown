@@ -2,7 +2,7 @@ package org.tudor.Timer;
 
 import java.util.function.Consumer;
 
-//TODO: Maybe createa a Timeable interface so we can encapsulate the duration and repatedness of
+//TODO: Maybe create a a Timeable interface so we can encapsulate the duration and repatedness of
 // the timer within the target member?
 
 //TODO: Add a finished member to the timer. Remove the timer from the manager based on that member
@@ -22,18 +22,18 @@ public class SyncTimer<T> {
     /** Indicates if the timer is running. */
     public boolean running = false;
     /** The duration of the timer. */
-    private long duration;
+    private final long duration;
     /** How much is left from the timer. */
     private long remaining;
     /** Indicates if the timer is repeating. */
-    private boolean repeating;
+    private final boolean repeating;
 
     /** Callback that gets called when the timer finishes. */
-    private Consumer<T> finishCallback;
+    private final Consumer<T> finishCallback;
     /** Callback that gets called every frame. */
-    private Consumer<T> updateCallback;
+    private final Consumer<T> updateCallback;
     /** The target object that is being consumed in the callbacks. */
-    private T targetObject;
+    private final T targetObject;
 
     /**
      * Initializes the timer with a duration, whether it repeats, update and finish callbacks and

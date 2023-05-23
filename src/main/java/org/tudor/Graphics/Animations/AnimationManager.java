@@ -1,6 +1,5 @@
 package org.tudor.Graphics.Animations;
 
-import org.tudor.Graphics.Primitives.CorePoint;
 import org.tudor.Timer.SyncTimer;
 import org.tudor.Timer.TimerManager;
 
@@ -24,33 +23,24 @@ public class AnimationManager {
     private static AnimationManager singleton = null;
 
     /** Maps every registrant's animation queue to their UUID. */
-    private HashMap<UUID, Deque<AnimationHandler<?>>> animatables = new HashMap<>();
+    private final HashMap<UUID, Deque<AnimationHandler<?>>> animatables = new HashMap<>();
     /** Maps every registrant's timer to their UUID. */
-    private HashMap<UUID, SyncTimer<AnimationHandler<?>>> timers = new HashMap<>();
+    private final HashMap<UUID, SyncTimer<AnimationHandler<?>>> timers = new HashMap<>();
 
     /** A general update consumer for the animation. */
-    private Consumer<AnimationHandler<?>> animationUpdate = new Consumer<AnimationHandler<?>>() {
-        @Override
-        public void accept(AnimationHandler<?> animationHandler) {
-//            System.out.println("ANIMATION UPDATE:");
-            animationHandler.calculateNewState();
-        }
-    };
+    private final Consumer<AnimationHandler<?>> animationUpdate = AnimationHandler::calculateNewState;
 
     /** A general finish consumer for the animation. */
-    private Consumer<AnimationHandler<?>> animationFinish = new Consumer<AnimationHandler<?>>() {
-        @Override
-        public void accept(AnimationHandler<?> animationHandler) {
-            animationHandler.animation().entity.stopAnimating();
-            animationHandler.reset();
+    private final Consumer<AnimationHandler<?>> animationFinish = animationHandler -> {
+        animationHandler.animation().entity.animationHasStopped();
+        animationHandler.reset();
 
-            AnimationHandler<?> next = animationHandler.getNextHandler();
-            if ( next != null ) {
-                AnimationManager.shared().forceAnimationInFront(
-                        animationHandler.animation().entity.getAnimationIdentifier(),
-                        next
-                );
-            }
+        AnimationHandler<?> next = animationHandler.getNextHandler();
+        if (next != null) {
+            AnimationManager.shared().forceAnimationInFront(
+                    animationHandler.animation().entity.getAnimationIdentifier(),
+                    next
+            );
         }
     };
 
@@ -104,6 +94,12 @@ public class AnimationManager {
         animatables.get(uuid).offer(animation);
     }
 
+    /**
+     * Forces an animation in front of the queue. This is useful for chained sub-animations because we need
+     * a following sub-animation to pe performed next, not after other queued animations.
+     * @param uuid The UUID of the queue that's being added to.
+     * @param animation The animation that is added.
+     */
     public void forceAnimationInFront(UUID uuid, AnimationHandler<?> animation) {
         animatables.get(uuid).offerFirst(animation);
     }
@@ -131,7 +127,7 @@ public class AnimationManager {
             SyncTimer<AnimationHandler<?>> timer = timers.get(uuid);
 
             if ( timer != null && timer.running) {
-                // Timer exists and is runnnig
+                // Timer exists and is running
                 timer.target().timePassed(elapsedTimeMs);
 
                 // Skip because we need to wait for the current animation to finish

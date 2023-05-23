@@ -14,28 +14,28 @@ import org.tudor.Input.KeyManager;
 
 import java.awt.*;
 
+/**
+ * Extends the GameState class for handling main menu logic.
+ */
 public class MainMenuState extends GameState implements InputObserver {
-    private CoreRectangle logoRect;
-    private CorePoint logoCp;
+    private final CoreRectangle logoRect;
+    private final CoreRectangle playButtonRect;
+    private final CoreRectangle quitButtonRect;
+    private final CoreRectangle scoresButtonRect;
+    private final CoreRectangle selectorRect;
+    private final CorePoint selectorCp;
 
-    private CoreRectangle playButtonRect;
-    private CorePoint playButtonCp;
-
-    private CoreRectangle quitButtonRect;
-    private CorePoint quitButtonCp;
-
-    private CoreRectangle scoresButtonRect;
-    private CorePoint scoresButtonCp;
-
-    private CoreRectangle selectorRect;
-    private CorePoint selectorCp;
-
+    /**Holds the currently selected menu item. */
     private int selectorIndex = 0;
 
+    /**
+     * Constructor that sets up the logo and buttons of the menu.
+     * @param context Game context.
+     */
     public MainMenuState(Game context) {
         super(context);
 
-        logoCp = new CorePoint(new Point(400, 50));
+        CorePoint logoCp = new CorePoint(new Point(400, 50));
         CorePoint logo2 = new CorePoint(new Point(0, 100));
         logoCp.addChild(logo2);
         logoRect = new CoreRectangle(
@@ -44,7 +44,7 @@ public class MainMenuState extends GameState implements InputObserver {
                 logo2
         );
 
-        playButtonCp = new CorePoint(new Point(400, 300));
+        CorePoint playButtonCp = new CorePoint(new Point(400, 300));
         CorePoint pb2 = new CorePoint(new Point(0, 25));
         playButtonCp.addChild(pb2);
         playButtonRect = new CoreRectangle(
@@ -54,7 +54,7 @@ public class MainMenuState extends GameState implements InputObserver {
         );
         playButtonRect.setZIndex(1);
 
-        scoresButtonCp = new CorePoint(new Point(400, 400));
+        CorePoint scoresButtonCp = new CorePoint(new Point(400, 400));
         CorePoint sb2 = new CorePoint(new Point(0, 25));
         scoresButtonCp.addChild(sb2);
         scoresButtonRect = new CoreRectangle(
@@ -64,7 +64,7 @@ public class MainMenuState extends GameState implements InputObserver {
         );
         scoresButtonRect.setZIndex(1);
 
-        quitButtonCp = new CorePoint(new Point(400, 500));
+        CorePoint quitButtonCp = new CorePoint(new Point(400, 500));
         CorePoint qb2 = new CorePoint(new Point(0, 25));
         quitButtonCp.addChild(qb2);
         quitButtonRect = new CoreRectangle(
@@ -87,9 +87,11 @@ public class MainMenuState extends GameState implements InputObserver {
     }
 
     @Override
-    public void update(long elapsedMs) {
-    }
+    public void update(long elapsedMs) {/**/}
 
+    /**
+     * Starts listening to input from the keyboard and begins rendering the menu.
+     */
     @Override
     public void begin() {
         KeyManager.shared().register(this);
@@ -100,6 +102,9 @@ public class MainMenuState extends GameState implements InputObserver {
         GameRenderer.shared().addToQueue(selectorRect);
     }
 
+    /**
+     * Unregisters from the KeyManager and stops rendering the menu.
+     */
     @Override
     public void cleanup() {
         GameRenderer.shared().removeFromQueue(logoRect);

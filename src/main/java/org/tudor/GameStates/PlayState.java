@@ -12,20 +12,28 @@ import org.tudor.Players.KeyboardPlayerType;
 
 import java.awt.*;
 
+/**
+ * Extends the GameState class to provide logic for a multiplayer game mode between two keyboard
+ * players.
+ */
 public class PlayState extends GameState implements InputObserver {
-    private KeyboardPlayer player1;
-    private KeyboardPlayer player2;
+    private final KeyboardPlayer player1;
+    private final KeyboardPlayer player2;
 
-    private CoreText player1Text;
-    private CoreText player1HpText;
-    private CoreText player2Text;
-    private CoreText player2HpText;
+    private final CoreText player1Text;
+    private final CoreText player1HpText;
+    private final CoreText player2Text;
+    private final CoreText player2HpText;
 
     private boolean prevHitPlayer1 = false;
     private boolean prevHitPlayer2 = false;
 
-    private long matchStartTime;
+    private final long matchStartTime;
 
+    /**
+     * Constructor that sets up the two players and the UI.
+     * @param context The Game context.
+     */
     public PlayState(Game context) {
         super(context);
 
@@ -39,6 +47,11 @@ public class PlayState extends GameState implements InputObserver {
         player2HpText = new CoreText("HP: ", new Point(700, 40));
 
     }
+
+    /**
+     * Checks for collisions between players and end-game conditions.
+     * @param elapsedMs The elapsed time between the previous frame and this one in milliseconds.
+     */
     @Override
     public void update(long elapsedMs) {
         player1.update();
@@ -74,6 +87,9 @@ public class PlayState extends GameState implements InputObserver {
         player2HpText.setText("HP: " + player2.getHealth());
     }
 
+    /**
+     * Starts rendering the players, UI and listening for keyboard inputs.
+     */
     public void begin() {
         KeyManager.shared().register(this);
         player1.getEntity().startDrawing();
@@ -84,6 +100,9 @@ public class PlayState extends GameState implements InputObserver {
         GameRenderer.shared().addToQueue(player2HpText);
     }
 
+    /**
+     * Stops rendering the players, UI and listening for keyboard inputs.
+     */
     public void cleanup() {
         GameRenderer.shared().removeFromQueue(player1Text);
         GameRenderer.shared().removeFromQueue(player2Text);

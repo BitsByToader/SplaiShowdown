@@ -14,26 +14,33 @@ public interface Animatable<T> {
      * Utility method for registering an Animatable for animations and making it responsible
      * for its UUID.
      */
-    public void registerForAnimations();
+    void registerForAnimations();
 
     /**
      * Utility method for unregistering an Animatable from animations.
      */
-    public void unregisterFromAnimations();
+    void unregisterFromAnimations();
 
     /**
      * Getter for the animations UUID.
      * @return The UUID tied to this Animatable.
      */
-    public UUID getAnimationIdentifier();
+    UUID getAnimationIdentifier();
 
-    public boolean isAnimating();
+    /**
+     * Checks if this Animatable is currently performing an Animation.
+     * @return The animation state.
+     */
+    boolean isAnimating();
 
-    public void stopAnimating();
+    /**
+     * Notifies this animatable that the animation has stopped.
+     */
+    void animationHasStopped();
 
     /**
      * Changes the animatable state of the object to the new state.
      * @param newState The new state of the object.
      */
-    public void animate(T newState);
+    void animate(T newState);
 }

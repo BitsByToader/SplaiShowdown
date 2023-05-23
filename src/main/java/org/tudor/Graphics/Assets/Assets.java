@@ -6,23 +6,29 @@ import java.awt.image.BufferedImage;
  * Static class that keeps all the assets for the games.
  */
 public class Assets {
-    /** Test texture for a small body part. */
+    /** Texture for a small body part. */
     public static BufferedImage partSmall;
-    /** Test texture for a large body part. */
+    /** Texture for a normal body part. */
     public static BufferedImage part;
+    /** Texture for a large body part. */
     public static BufferedImage partBig;
-    /** Test texture for a head, i.e. a filled in circle. */
+    /** Texture for a head, i.e. a filled in circle. */
     public static BufferedImage head;
+    /** Logo of the game. */
     public static BufferedImage logo;
+    /** Texture for the play button. */
     public static BufferedImage multiplayerButton;
+    /** Texture for the leaderboard button. */
     public static BufferedImage scoresButton;
+    /** Texture for the quit button. */
     public static BufferedImage quitButton;
+    /** Texture for the menu selector. */
     public static BufferedImage menuSelector;
 
     /**
      * Private constructor since this is a static class.
      */
-    private Assets() {};
+    private Assets() {}
 
     /**
      * Initialize the assets used in the game.

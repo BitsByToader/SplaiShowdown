@@ -5,7 +5,6 @@ import org.tudor.Graphics.Primitives.CoreRectangle;
 
 import java.awt.*;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Abstract class that defines basic functionality for a CorePoint tree. It leaves it up to the implementing
@@ -15,7 +14,7 @@ abstract public class BaseSkeleton {
     /** The roof of the CorePoint tree. */
     private CorePoint cpTreeRoot = null;
     /** The absolute position in the world of the skeleton. */
-    private Point absolutePos = new Point(0, 0);
+    private final Point absolutePos = new Point(0, 0);
 
     /**
      * Default stub constructor for implementing classes to use when constructing their specific skeleton.
@@ -50,6 +49,10 @@ abstract public class BaseSkeleton {
         cpTreeRoot.move(deltaX, deltaY);
     }
 
+    /**
+     * Getter for the absolute position of the tree.
+     * @return The absolute position of tree.
+     */
     public Point getAbsolutePosition() { return new Point(absolutePos); }
 
     /**
@@ -57,6 +60,9 @@ abstract public class BaseSkeleton {
      */
     public abstract void beginRendering();
 
+    /**
+     * Notifies the <i>GameRenderer</i> that this skeleton can be removed from the render queue.
+     */
     public abstract void stopRendering();
 
     /**
@@ -73,5 +79,9 @@ abstract public class BaseSkeleton {
      */
     public abstract CorePoint getJoint(String name);
 
+    /**
+     * Getter for the joints of the skeleton.
+     * @return A Collection of the joints.
+     */
     public abstract Collection<CorePoint> getJoints();
 }

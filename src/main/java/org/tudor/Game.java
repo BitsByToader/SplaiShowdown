@@ -11,7 +11,6 @@ import org.tudor.Graphics.GameRenderer;
 import org.tudor.Input.KeyManager;
 import org.tudor.Timer.TimerManager;
 
-import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -20,21 +19,25 @@ import java.awt.image.BufferStrategy;
  */
 public class Game implements Runnable {
     /** Game window. */
-    private GameWindow          wnd;
+    private final GameWindow        wnd;
     /** Indicates if the game is running. */
-    private boolean             runState;
+    private boolean                 runState;
     /** Main render/engine thread. */
-    private Thread              gameThread;
+    private Thread                  gameThread;
     /** Buffer strategy used when rendering. */
-    private BufferStrategy      bs;
+    private BufferStrategy          bs;
     /** Shared instance used for rendering. */
-    private GameRenderer        rendererInstance;
+    private final GameRenderer      rendererInstance;
     /**  Shared instance used for key handling. */
-    private KeyManager          keyManager;
-    private AnimationManager    animationManager;
-    private TimerManager        timerManager;
+    private final KeyManager        keyManager;
+    /**  Shared instance used for animation handling. */
+    private final AnimationManager  animationManager;
+    /**  Shared instance used for timer handling. */
+    private final TimerManager      timerManager;
 
+    /** Current state of the game. */
     private GameState currentState;
+    /** Previous state of the game. */
     private GameState previousState = null;
 
     /** Previous time for the old frame. */
@@ -98,7 +101,7 @@ public class Game implements Runnable {
         long curentTime; // current frame time
 
         final int framesPerSecond   = 60; // target frames per second of the game
-        final double timeFrame      = 1000000000 / framesPerSecond; // frame time in nano seconds
+        final double timeFrame      = (double) 1000000000 / framesPerSecond; // frame time in nanoseconds
 
         while ( runState ) {
             curentTime = System.nanoTime();
@@ -133,12 +136,17 @@ public class Game implements Runnable {
 
             try {
                 gameThread.join();
+                Database.shared().close();
             } catch(InterruptedException ex) {
                 ex.printStackTrace();
             }
         }
     }
 
+    /**
+     * Transitions to the next state.
+     * @param nextState The next state of the game.
+     */
     public void transition(GameState nextState) {
         previousState = currentState;
         previousState.cleanup();
@@ -147,6 +155,9 @@ public class Game implements Runnable {
         currentState.begin();
     }
 
+    /**
+     * Transitions to the previous state the game was in.
+     */
     public void transitionToPreviousState() {
         if ( previousState != null ) {
             currentState.cleanup();

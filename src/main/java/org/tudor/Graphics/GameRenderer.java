@@ -16,16 +16,11 @@ public class GameRenderer {
     /** Shared instance of the renderer. */
     private static GameRenderer singleton = null;
 
-    //TODO: Maybe implement drawables as a list with an added instertSorted method?
+    //TODO: Maybe implement drawables as a list with an added insertSorted method?
     /**
      * List of drawables to render based on their z-index.
      */
-    private PriorityQueue<Drawable> drawables = new PriorityQueue<>(new Comparator<Drawable>() {
-        @Override
-        public int compare(Drawable o1, Drawable o2) {
-            return o1.getZIndex().compareTo(o2.getZIndex());
-        }
-    });
+    private final PriorityQueue<Drawable> drawables = new PriorityQueue<>(Comparator.comparing(Drawable::getZIndex));
 
     /**
      * Private constructor for the Singleton design pattern.
