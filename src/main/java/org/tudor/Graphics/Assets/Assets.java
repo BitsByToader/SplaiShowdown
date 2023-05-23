@@ -15,6 +15,7 @@ public class Assets {
     public static BufferedImage head;
     public static BufferedImage logo;
     public static BufferedImage multiplayerButton;
+    public static BufferedImage scoresButton;
     public static BufferedImage quitButton;
     public static BufferedImage menuSelector;
 
@@ -33,6 +34,7 @@ public class Assets {
         head = ImageLoader.loadImage("/head.png");
         logo = ImageLoader.loadImage("/logo.png");
         multiplayerButton = ImageLoader.loadImage("/multiplayer_button.png");
+        scoresButton = ImageLoader.loadImage("/scores_btn.png");
         quitButton = ImageLoader.loadImage("/quit_btn.png");
         menuSelector = ImageLoader.loadImage("/menu_selector.png");
     }

@@ -24,6 +24,9 @@ public class MainMenuState extends GameState implements InputObserver {
     private CoreRectangle quitButtonRect;
     private CorePoint quitButtonCp;
 
+    private CoreRectangle scoresButtonRect;
+    private CorePoint scoresButtonCp;
+
     private CoreRectangle selectorRect;
     private CorePoint selectorCp;
 
@@ -51,7 +54,17 @@ public class MainMenuState extends GameState implements InputObserver {
         );
         playButtonRect.setZIndex(1);
 
-        quitButtonCp = new CorePoint(new Point(400, 400));
+        scoresButtonCp = new CorePoint(new Point(400, 400));
+        CorePoint sb2 = new CorePoint(new Point(0, 25));
+        scoresButtonCp.addChild(sb2);
+        scoresButtonRect = new CoreRectangle(
+                Assets.scoresButton,
+                scoresButtonCp,
+                sb2
+        );
+        scoresButtonRect.setZIndex(1);
+
+        quitButtonCp = new CorePoint(new Point(400, 500));
         CorePoint qb2 = new CorePoint(new Point(0, 25));
         quitButtonCp.addChild(qb2);
         quitButtonRect = new CoreRectangle(
@@ -82,6 +95,7 @@ public class MainMenuState extends GameState implements InputObserver {
         KeyManager.shared().register(this);
         GameRenderer.shared().addToQueue(logoRect);
         GameRenderer.shared().addToQueue(playButtonRect);
+        GameRenderer.shared().addToQueue(scoresButtonRect);
         GameRenderer.shared().addToQueue(quitButtonRect);
         GameRenderer.shared().addToQueue(selectorRect);
     }
@@ -90,6 +104,7 @@ public class MainMenuState extends GameState implements InputObserver {
     public void cleanup() {
         GameRenderer.shared().removeFromQueue(logoRect);
         GameRenderer.shared().removeFromQueue(playButtonRect);
+        GameRenderer.shared().removeFromQueue(scoresButtonRect);
         GameRenderer.shared().removeFromQueue(quitButtonRect);
         GameRenderer.shared().removeFromQueue(selectorRect);
 
@@ -109,7 +124,7 @@ public class MainMenuState extends GameState implements InputObserver {
                             selectorCp.getAnimationIdentifier(),
                             new PointAnimationHandler(new SubAnimation<>(
                                     selectorCp,
-                                    new Point(0, 0),
+                                    new Point(0, 100*selectorIndex),
                                     250,
                                     null
                             ))
@@ -117,13 +132,13 @@ public class MainMenuState extends GameState implements InputObserver {
                 }
             }
             case DOWNL, DOWNR -> {
-                if ( selectorIndex < 1 ) {
+                if ( selectorIndex < 2 ) {
                     selectorIndex++;
                     AnimationManager.shared().addAnimation(
                             selectorCp.getAnimationIdentifier(),
                             new PointAnimationHandler(new SubAnimation<>(
                                     selectorCp,
-                                    new Point(0, 100),
+                                    new Point(0, 100*selectorIndex),
                                     250,
                                     null
                             ))
@@ -131,10 +146,10 @@ public class MainMenuState extends GameState implements InputObserver {
                 }
             }
             case ENTER -> {
-                if ( selectorIndex == 0 ) {
-                    parentContext.transition(new PlayState(parentContext));
-                } else {
-                    System.exit(0);
+                switch (selectorIndex) {
+                    case 0 -> parentContext.transition(new PlayState(parentContext));
+                    case 1 -> parentContext.transition(new ScoresState(parentContext));
+                    case 2 -> System.exit(0);
                 }
             }
         }

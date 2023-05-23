@@ -1,5 +1,7 @@
 package org.tudor;
 
+import org.tudor.Database.Database;
+import org.tudor.Database.DatabaseConnectionFailedException;
 import org.tudor.GameStates.GameState;
 import org.tudor.GameStates.MainMenuState;
 import org.tudor.GameWindow.GameWindow;
@@ -9,6 +11,7 @@ import org.tudor.Graphics.GameRenderer;
 import org.tudor.Input.KeyManager;
 import org.tudor.Timer.TimerManager;
 
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -60,6 +63,14 @@ public class Game implements Runnable {
 
         // Load the assets
         Assets.init();
+
+        // Connect to the database
+        try {
+            Database.shared().connect();
+        } catch (DatabaseConnectionFailedException e) {
+            System.out.println("Couldn't connect to database! What?");
+            System.exit(1);
+        }
 
         // Create the animation manager
         animationManager = AnimationManager.shared();

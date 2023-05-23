@@ -1,5 +1,8 @@
 package org.tudor.GameStates;
 
+import org.tudor.Database.Database;
+import org.tudor.Database.DatabaseNotOpenException;
+import org.tudor.Database.MatchLog;
 import org.tudor.Game;
 import org.tudor.Graphics.GameRenderer;
 import org.tudor.Graphics.Primitives.CoreText;
@@ -12,11 +15,17 @@ import java.util.function.Consumer;
 public class GameOverState extends GameState {
     CoreText gameOverText;
 
-    protected GameOverState(String message, Game context) {
+    protected GameOverState(MatchLog matchStats, String message, Game context) {
         super(context);
 
         gameOverText = new CoreText(message, new Point(380, 280));
         gameOverText.setZIndex(1);
+
+        try {
+            Database.shared().insertMatch(matchStats);
+        } catch(DatabaseNotOpenException e) {
+            System.out.println("Database connection not open? How?");
+        }
     }
 
     @Override

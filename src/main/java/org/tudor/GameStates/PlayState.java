@@ -1,5 +1,6 @@
 package org.tudor.GameStates;
 
+import org.tudor.Database.MatchLog;
 import org.tudor.Game;
 import org.tudor.Graphics.GameRenderer;
 import org.tudor.Graphics.Primitives.CoreText;
@@ -23,8 +24,12 @@ public class PlayState extends GameState implements InputObserver {
     private boolean prevHitPlayer1 = false;
     private boolean prevHitPlayer2 = false;
 
+    private long matchStartTime;
+
     public PlayState(Game context) {
         super(context);
+
+        matchStartTime = System.currentTimeMillis();
 
         player1 = new KeyboardPlayer(KeyboardPlayerType.PLAYER_1);
         player2 = new KeyboardPlayer(KeyboardPlayerType.PLAYER_2);
@@ -40,11 +45,19 @@ public class PlayState extends GameState implements InputObserver {
         player2.update();
 
         if ( player1.getHealth() == 0 ) {
-            parentContext.transition(new GameOverState("PLAYER2 WON!", parentContext));
+            MatchLog l = new MatchLog("Player2",
+                    player2.getHealth(),
+                    System.currentTimeMillis() - matchStartTime
+            );
+            parentContext.transition(new GameOverState(l,"PLAYER2 WON!", parentContext));
         }
 
         if ( player2.getHealth() == 0 ) {
-            parentContext.transition(new GameOverState("PLAYER1 WON!", parentContext));
+            MatchLog l = new MatchLog("Player1",
+                    player1.getHealth(),
+                    System.currentTimeMillis() - matchStartTime
+            );
+            parentContext.transition(new GameOverState(l, "PLAYER1 WON!", parentContext));
         }
 
         boolean hit = player1.checkHitOn(player2);

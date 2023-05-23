@@ -7,31 +7,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f119ca68-6ddc-46ec-a71e-e24ff5370176" name="Changes" comment="Added sprites for the main menu instead of the stubs used earlier.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/GameOverState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CoreText.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Players/PlayerOrientationState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Players/PlayerState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/part_big.png" afterDir="false" />
+    <list default="true" id="f119ca68-6ddc-46ec-a71e-e24ff5370176" name="Changes" comment="Added actual game behaviour. The two players can now battle each other until one of them wins and the game resets.">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/game.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Database/Database.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Database/DatabaseConnectionFailedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Database/DatabaseConnectionState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Database/DatabaseNotOpenException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Database/MatchLog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/ScoresState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/scores_btn.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Entities/PlayerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Entities/PlayerEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/GameOverState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/GameOverState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/MainMenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/MainMenuState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/PlayState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/Animatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/Animatable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Assets/Assets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Assets/Assets.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CorePoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CorePoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CoreRectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CoreRectangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/BaseSkeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/BaseSkeleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/HumanSkeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/HumanSkeleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Players/KeyboardPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Players/KeyboardPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/head.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/head.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,26 +78,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/tudor/Developer/SplaiShowdown/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/tudor/Developer/SplaiShowdown/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
@@ -201,7 +194,7 @@
       <workItem from="1684733649568" duration="12000" />
       <workItem from="1684755280723" duration="2456000" />
       <workItem from="1684767605098" duration="4213000" />
-      <workItem from="1684824250825" duration="716000" />
+      <workItem from="1684824250825" duration="11264000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed the bug that caused a week's worth of pulling my hair and broken animations. The system works flawlessly now, the animations just need some touching up.">
       <created>1684069614158</created>
@@ -231,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684518961033</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added actual game behaviour. The two players can now battle each other until one of them wins and the game resets.">
+      <created>1684825624078</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1684825624078</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,7 +254,8 @@
     <MESSAGE value="Changed the behaviour of the AnimationManager to respect the rest of the changes of the Animation System. Added the Observer pattern and combo detection to the KeyManager." />
     <MESSAGE value="Added the folloswing GameStates to the game: MainMenu and Play." />
     <MESSAGE value="Added sprites for the main menu instead of the stubs used earlier." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added sprites for the main menu instead of the stubs used earlier." />
+    <MESSAGE value="Added actual game behaviour. The two players can now battle each other until one of them wins and the game resets." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added actual game behaviour. The two players can now battle each other until one of them wins and the game resets." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
