@@ -37,10 +37,11 @@ public class AnimationManager {
         }
     };
 
-    /** A general finish (stub) consumer for the animation. */
+    /** A general finish consumer for the animation. */
     private Consumer<AnimationHandler<?>> animationFinish = new Consumer<AnimationHandler<?>>() {
         @Override
         public void accept(AnimationHandler<?> animationHandler) {
+            animationHandler.animation().entity.stopAnimating();
             animationHandler.reset();
 
             AnimationHandler<?> next = animationHandler.getNextHandler();

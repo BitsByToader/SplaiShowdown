@@ -45,7 +45,7 @@ public class MainMenuState extends GameState implements InputObserver {
         CorePoint pb2 = new CorePoint(new Point(0, 25));
         playButtonCp.addChild(pb2);
         playButtonRect = new CoreRectangle(
-                Assets.multiplayer_btn,
+                Assets.multiplayerButton,
                 playButtonCp,
                 pb2
         );
@@ -55,7 +55,7 @@ public class MainMenuState extends GameState implements InputObserver {
         CorePoint qb2 = new CorePoint(new Point(0, 25));
         quitButtonCp.addChild(qb2);
         quitButtonRect = new CoreRectangle(
-                Assets.quit_btn,
+                Assets.quitButton,
                 quitButtonCp,
                 qb2
         );
@@ -65,7 +65,7 @@ public class MainMenuState extends GameState implements InputObserver {
         CorePoint s2 = new CorePoint(new Point(0, 75));
         selectorCp.addChild(s2);
         selectorRect = new CoreRectangle(
-                Assets.menu_selector,
+                Assets.menuSelector,
                 selectorCp,
                 s2
         );

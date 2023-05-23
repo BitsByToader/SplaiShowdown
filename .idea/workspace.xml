@@ -7,16 +7,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f119ca68-6ddc-46ec-a71e-e24ff5370176" name="Changes" comment="Added the folloswing GameStates to the game: MainMenu and Play.">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/menu_selector.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/multiplayer_button.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/quit_btn.png" afterDir="false" />
+    <list default="true" id="f119ca68-6ddc-46ec-a71e-e24ff5370176" name="Changes" comment="Added sprites for the main menu instead of the stubs used earlier.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/GameOverState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CoreText.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Players/PlayerOrientationState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Players/PlayerState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/part_big.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Entities/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Entities/PlayerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Entities/PlayerEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/MainMenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/MainMenuState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/GameWindow/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameWindow/GameWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/PlayState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/GameStates/PlayState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/Animatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/Animatable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Animations/AnimationManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Assets/Assets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Assets/Assets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CorePoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CorePoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CoreRectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Primitives/CoreRectangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/BaseSkeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/BaseSkeleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/HumanSkeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Graphics/Skeletons/HumanSkeleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tudor/Players/KeyboardPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tudor/Players/KeyboardPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/head.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/head.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +49,17 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="SplaiShowdown" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -169,7 +194,14 @@
       <workItem from="1684402487176" duration="1378000" />
       <workItem from="1684478578789" duration="19264000" />
       <workItem from="1684508742641" duration="1855000" />
-      <workItem from="1684511525668" duration="5500000" />
+      <workItem from="1684511525668" duration="8412000" />
+      <workItem from="1684556550779" duration="7845000" />
+      <workItem from="1684572526678" duration="14034000" />
+      <workItem from="1684600083488" duration="5863000" />
+      <workItem from="1684733649568" duration="12000" />
+      <workItem from="1684755280723" duration="2456000" />
+      <workItem from="1684767605098" duration="4213000" />
+      <workItem from="1684824250825" duration="716000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed the bug that caused a week's worth of pulling my hair and broken animations. The system works flawlessly now, the animations just need some touching up.">
       <created>1684069614158</created>
@@ -192,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684514162593</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added sprites for the main menu instead of the stubs used earlier.">
+      <created>1684518961033</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1684518961033</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,7 +253,8 @@
     <MESSAGE value="Fixed the bug that caused a week's worth of pulling my hair and broken animations. The system works flawlessly now, the animations just need some touching up." />
     <MESSAGE value="Changed the behaviour of the AnimationManager to respect the rest of the changes of the Animation System. Added the Observer pattern and combo detection to the KeyManager." />
     <MESSAGE value="Added the folloswing GameStates to the game: MainMenu and Play." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the folloswing GameStates to the game: MainMenu and Play." />
+    <MESSAGE value="Added sprites for the main menu instead of the stubs used earlier." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sprites for the main menu instead of the stubs used earlier." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

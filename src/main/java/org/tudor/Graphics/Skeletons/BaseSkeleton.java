@@ -4,6 +4,8 @@ import org.tudor.Graphics.Primitives.CorePoint;
 import org.tudor.Graphics.Primitives.CoreRectangle;
 
 import java.awt.*;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Abstract class that defines basic functionality for a CorePoint tree. It leaves it up to the implementing
@@ -48,6 +50,8 @@ abstract public class BaseSkeleton {
         cpTreeRoot.move(deltaX, deltaY);
     }
 
+    public Point getAbsolutePosition() { return new Point(absolutePos); }
+
     /**
      * Notifies the <i>GameRenderer</i> that this skeleton will need to be rendered.
      */
@@ -68,4 +72,6 @@ abstract public class BaseSkeleton {
      * @return The CorePoint associated with the joint.
      */
     public abstract CorePoint getJoint(String name);
+
+    public abstract Collection<CorePoint> getJoints();
 }

@@ -37,6 +37,8 @@ public class CorePoint implements Animatable<Point> {
      */
     private UUID animationIdentifier = null;
 
+    private boolean animating = false;
+
     /**
      * A CorePoint's position will always be relative to its parent. However, the root of the CorePoint
      * tree has the <i>relativePos</i> field actually be the absolute position in the world.
@@ -135,7 +137,8 @@ public class CorePoint implements Animatable<Point> {
      * for its UUID.
      */
     public void registerForAnimations() {
-        animationIdentifier = AnimationManager.shared().registerForAnimations();
+        if ( animationIdentifier == null )
+            animationIdentifier = AnimationManager.shared().registerForAnimations();
     }
 
     /**
@@ -154,6 +157,16 @@ public class CorePoint implements Animatable<Point> {
         return animationIdentifier;
     }
 
+    @Override
+    public boolean isAnimating() {
+        return animating;
+    }
+
+    @Override
+    public void stopAnimating() {
+        animating = false;
+    }
+
     /**
      * Calculates the delta between the current position and the target position.
      * @param t Target position, as a delta between this position and the base position.
@@ -168,6 +181,7 @@ public class CorePoint implements Animatable<Point> {
 
     @Override
     public void animate(Point newState) {
+        animating = true;
         move(newState.x, newState.y);
     }
 }

@@ -1,6 +1,5 @@
 package org.tudor.Graphics.Assets;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
@@ -10,13 +9,14 @@ public class Assets {
     /** Test texture for a small body part. */
     public static BufferedImage partSmall;
     /** Test texture for a large body part. */
-    public static BufferedImage partLarge;
+    public static BufferedImage part;
+    public static BufferedImage partBig;
     /** Test texture for a head, i.e. a filled in circle. */
     public static BufferedImage head;
     public static BufferedImage logo;
-    public static BufferedImage multiplayer_btn;
-    public static BufferedImage quit_btn;
-    public static BufferedImage menu_selector;
+    public static BufferedImage multiplayerButton;
+    public static BufferedImage quitButton;
+    public static BufferedImage menuSelector;
 
     /**
      * Private constructor since this is a static class.
@@ -28,11 +28,12 @@ public class Assets {
      */
     public static void init() {
         partSmall = ImageLoader.loadImage("/part_small.png");
-        partLarge = ImageLoader.loadImage("/part.png");
+        part = ImageLoader.loadImage("/part.png");
+        partBig = ImageLoader.loadImage("/part_big.png");
         head = ImageLoader.loadImage("/head.png");
         logo = ImageLoader.loadImage("/logo.png");
-        multiplayer_btn = ImageLoader.loadImage("/multiplayer_button.png");
-        quit_btn = ImageLoader.loadImage("/quit_btn.png");
-        menu_selector = ImageLoader.loadImage("/menu_selector.png");
+        multiplayerButton = ImageLoader.loadImage("/multiplayer_button.png");
+        quitButton = ImageLoader.loadImage("/quit_btn.png");
+        menuSelector = ImageLoader.loadImage("/menu_selector.png");
     }
 }

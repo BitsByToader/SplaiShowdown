@@ -59,10 +59,10 @@ public class CoreRectangle implements Drawable {
         g.drawRenderedImage(texture, t);
 
         // Debug rendering of CorePoints
-        g.setColor(new Color(255, 0, 0));
-        g.fillRect(parentAbsPos.x, parentAbsPos.y, 2, 2);
-        Point childAbsPos = child.getAbsolutePos();
-        g.fillRect(childAbsPos.x, childAbsPos.y, 2, 2);
+//        g.setColor(new Color(255, 0, 0));
+//        g.fillRect(parentAbsPos.x, parentAbsPos.y, 2, 2);
+//        Point childAbsPos = child.getAbsolutePos();
+//        g.fillRect(childAbsPos.x, childAbsPos.y, 2, 2);
     }
 
     public void setZIndex(Integer idx) {

@@ -27,9 +27,13 @@ public interface Animatable<T> {
      */
     public UUID getAnimationIdentifier();
 
+    public boolean isAnimating();
+
+    public void stopAnimating();
+
     /**
      * Changes the animatable state of the object to the new state.
      * @param newState The new state of the object.
      */
-    void animate(T newState);
+    public void animate(T newState);
 }
