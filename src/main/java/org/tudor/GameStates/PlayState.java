@@ -3,6 +3,8 @@ package org.tudor.GameStates;
 import org.tudor.Database.MatchLog;
 import org.tudor.Game;
 import org.tudor.Graphics.GameRenderer;
+import org.tudor.Graphics.Primitives.CorePoint;
+import org.tudor.Graphics.Primitives.CoreRectangle;
 import org.tudor.Graphics.Primitives.CoreText;
 import org.tudor.Input.InputObserver;
 import org.tudor.Input.InputType;
@@ -11,6 +13,7 @@ import org.tudor.Players.KeyboardPlayer;
 import org.tudor.Players.KeyboardPlayerType;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Extends the GameState class to provide logic for a multiplayer game mode between two keyboard
@@ -19,6 +22,8 @@ import java.awt.*;
 public class PlayState extends GameState implements InputObserver {
     private final KeyboardPlayer player1;
     private final KeyboardPlayer player2;
+
+    private final CoreRectangle background;
 
     private final CoreText player1Text;
     private final CoreText player1HpText;
@@ -34,7 +39,7 @@ public class PlayState extends GameState implements InputObserver {
      * Constructor that sets up the two players and the UI.
      * @param context The Game context.
      */
-    public PlayState(Game context) {
+    public PlayState(BufferedImage backgroundTexture, Game context) {
         super(context);
 
         matchStartTime = System.currentTimeMillis();
@@ -46,6 +51,11 @@ public class PlayState extends GameState implements InputObserver {
         player1HpText = new CoreText("HP: ", new Point(10, 40));
         player2HpText = new CoreText("HP: ", new Point(700, 40));
 
+        CorePoint cp1 = new CorePoint(new Point(400,0));
+        CorePoint cp2 = new CorePoint(new Point(0, 10));
+        cp1.addChild(cp2);
+        background = new CoreRectangle(backgroundTexture, cp1, cp2);
+        background.setZIndex(0);
     }
 
     /**
@@ -98,6 +108,7 @@ public class PlayState extends GameState implements InputObserver {
         GameRenderer.shared().addToQueue(player2Text);
         GameRenderer.shared().addToQueue(player1HpText);
         GameRenderer.shared().addToQueue(player2HpText);
+        GameRenderer.shared().addToQueue(background);
     }
 
     /**
@@ -108,6 +119,7 @@ public class PlayState extends GameState implements InputObserver {
         GameRenderer.shared().removeFromQueue(player2Text);
         GameRenderer.shared().removeFromQueue(player1HpText);
         GameRenderer.shared().removeFromQueue(player2HpText);
+        GameRenderer.shared().removeFromQueue(background);
         player1.cleanup();
         player2.cleanup();
     }
@@ -118,7 +130,7 @@ public class PlayState extends GameState implements InputObserver {
     @Override
     public void newInput(InputType i) {
         if (i == InputType.ESCAPE) {
-            parentContext.transitionToPreviousState();
+            parentContext.transition(new MainMenuState(parentContext));
         }
     }
 }

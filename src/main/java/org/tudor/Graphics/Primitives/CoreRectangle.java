@@ -39,6 +39,10 @@ public class CoreRectangle implements Drawable {
         this.child = child;
     }
 
+    public void setTexture(BufferedImage t) {
+        this.texture = t;
+    }
+
     /**
      * Draws the CoreRectangle.
      * @param g The graphics context the CoreRectangle is drawn into.

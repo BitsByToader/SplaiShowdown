@@ -24,6 +24,12 @@ public class Assets {
     public static BufferedImage quitButton;
     /** Texture for the menu selector. */
     public static BufferedImage menuSelector;
+    /** Texture for the background of the first stage. */
+    public static BufferedImage stage1Background;
+    /** Texture for the background of the second stage. */
+    public static BufferedImage stage2Background;
+    /** Texture for the background of the third stage. */
+    public static BufferedImage stage3Background;
 
     /**
      * Private constructor since this is a static class.
@@ -43,5 +49,8 @@ public class Assets {
         scoresButton = ImageLoader.loadImage("/scores_btn.png");
         quitButton = ImageLoader.loadImage("/quit_btn.png");
         menuSelector = ImageLoader.loadImage("/menu_selector.png");
+        stage1Background = ImageLoader.loadImage("/stage1_background.png");
+        stage2Background = ImageLoader.loadImage("/stage2_background.png");
+        stage3Background = ImageLoader.loadImage("/stage3_background.png");
     }
 }

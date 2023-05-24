@@ -125,6 +125,7 @@ public class MainMenuState extends GameState implements InputObserver {
             case UPL, UPR -> {
                 if ( selectorIndex > 0 ) {
                     selectorIndex--;
+                    AnimationManager.shared().clearQueue(selectorCp.getAnimationIdentifier());
                     AnimationManager.shared().addAnimation(
                             selectorCp.getAnimationIdentifier(),
                             new PointAnimationHandler(new SubAnimation<>(
@@ -139,6 +140,7 @@ public class MainMenuState extends GameState implements InputObserver {
             case DOWNL, DOWNR -> {
                 if ( selectorIndex < 2 ) {
                     selectorIndex++;
+                    AnimationManager.shared().clearQueue(selectorCp.getAnimationIdentifier());
                     AnimationManager.shared().addAnimation(
                             selectorCp.getAnimationIdentifier(),
                             new PointAnimationHandler(new SubAnimation<>(
@@ -152,7 +154,7 @@ public class MainMenuState extends GameState implements InputObserver {
             }
             case ENTER -> {
                 switch (selectorIndex) {
-                    case 0 -> parentContext.transition(new PlayState(parentContext));
+                    case 0 -> parentContext.transition(new StageSelectionStage(parentContext));
                     case 1 -> parentContext.transition(new ScoresState(parentContext));
                     case 2 -> System.exit(0);
                 }
