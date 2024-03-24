@@ -23,6 +23,7 @@ public class MainMenuState extends GameState implements InputObserver {
     private final CoreRectangle quitButtonRect;
     private final CoreRectangle scoresButtonRect;
     private final CoreRectangle selectorRect;
+
     private final CorePoint selectorCp;
 
     /**Holds the currently selected menu item. */
